@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    
+    <v:String x:Key="AddMenuButton">Добавить</v:String>
+    <v:String x:Key="ChangeMenuButton">Изменить язык</v:String>
+    <v:String x:Key="Price">Цена(USD):</v:String>
+    <v:String x:Key="StartPrice">Начальная цена:</v:String>
+    <v:String x:Key="Name">Название:</v:String>
+    <v:String x:Key="TimeLeft">Конец торгов:</v:String>
+    <v:String x:Key="TimeLeftAdding">Время торгов(дни):</v:String>
+    <v:String x:Key="Bids">Ставок:</v:String>
+    <v:String x:Key="Type">Тип:</v:String>
+    <v:String x:Key="Description">Описание:</v:String>
+    <v:String x:Key="UploadPhoto">Загрузить фото</v:String>
+    <v:String x:Key="DoneAddingProduct">Готово</v:String>
+
+    <!--<v:Image x:Name="DeleteImage" Source="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\free-icon-font-cross-3917759.png" />-->
+    
+</ResourceDictionary>
