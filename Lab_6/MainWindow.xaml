@@ -63,7 +63,7 @@
                 </TabItem.Header>
                 <TabItem.Content>
 
-                    <ListBox x:Name="ProductList" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProsuct}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="MoreAbout">
+                    <ListBox x:Name="ProductList" ItemsSource="{Binding AllProducts}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="MoreAbout">
                         <!--<CommandBinding>
                             <CommandBinding Command="New" Executed="Edit"/>
                         </CommandBinding>-->
@@ -77,7 +77,7 @@
                                 <Border BorderBrush="Gainsboro" BorderThickness="2">
                                     <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200" Background="#238C47">
 
-                                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path=Image}" />
+                                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = IMAGES.LINK}" />
 
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                             <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
@@ -87,11 +87,11 @@
                                             <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
                                         </StackPanel>
                                         <StackPanel VerticalAlignment="Center" Margin="40">
-                                            <TextBlock FontSize="16" Text="{Binding Path=Title}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=Price}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=TimeLeft}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=Bids}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=Type}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=PRICE}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=ENDTIME}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>

@@ -36,6 +36,16 @@
           <Property Name="ID_USER" Type="int" />
           <Property Name="ID_PRODUCT" Type="int" />
         </EntityType>-->
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="USER_TYPE">
     <Key>
       <PropertyRef Name="USER_TYPE" />
@@ -147,6 +157,7 @@
     <EntitySet Name="BASKET" EntityType="Self.BASKET" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USER_TYPE" EntityType="Self.USER_TYPE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__BASKET__ID_PRODU__0E6E26BF" Association="Self.FK__BASKET__ID_PRODU__0E6E26BF">

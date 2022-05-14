@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using Lab_6.Models;
+using Lab_6.Model;
+using Lab_6.ViewModel;
+
 
 
 namespace Lab_6
@@ -24,7 +26,6 @@ namespace Lab_6
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel _viewModel = null;
         //public static observablecollection<product> productlist = new observablecollection<product>();
         public MainWindow()
         {
@@ -32,17 +33,18 @@ namespace Lab_6
             InitializeComponent();
             //AUCTION_DBEntities db = new AUCTION_DBEntities();
             //db = new ViewModel();
+            DataContext = new Lab_6.ViewModel.DataManageVM();
 
 
 
 
             ////////////ХУЕТА////////////////
-            AUCTION_DBEntities db = new AUCTION_DBEntities();
-            var users = db.USERS;
-            foreach (var user in users)
-            {
-                Console.WriteLine(user.PASSWORD_USER.ToString());
-            }
+            //AUCTION_DBEntities db = new AUCTION_DBEntities();
+            //var users = db.USERS;
+            //foreach (var user in users)
+            //{
+            //    Console.WriteLine(user.PASSWORD_USER.ToString());
+            //}
 
 
             ////////////ХУЕТА////////////////
@@ -64,7 +66,7 @@ namespace Lab_6
 
         public void MoreAbout(object sender, RoutedEventArgs e)
         {
-            MoreWindow moreWindow = new MoreWindow(_viewModel.SelectedProduct);
+            MoreWindow moreWindow = new MoreWindow();
             moreWindow.Show();
         }
         private void AddProduct(object sender, RoutedEventArgs e)

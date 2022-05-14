@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/auction_db_model.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/auction_db_model.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/auction_db_model.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/auction_db_model.tt")]
 
 

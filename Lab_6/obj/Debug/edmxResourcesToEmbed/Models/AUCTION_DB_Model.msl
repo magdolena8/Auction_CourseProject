@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище AUCTION_DBModelContainer" CdmEntityContainer="AUCTION_DBEntities">
     <EntitySetMapping Name="IMAGES">
-      <EntityTypeMapping TypeName="AUCTION_DBModel.IMAGE">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.IMAGES">
         <MappingFragment StoreEntitySet="IMAGES">
           <ScalarProperty Name="ID_IMAGE" ColumnName="ID_IMAGE" />
           <ScalarProperty Name="LINK" ColumnName="LINK" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PRODUCTS">
-      <EntityTypeMapping TypeName="AUCTION_DBModel.PRODUCT">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.PRODUCTS">
         <MappingFragment StoreEntitySet="PRODUCTS">
           <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
           <ScalarProperty Name="TITLE" ColumnName="TITLE" />
@@ -25,6 +25,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="USER_TYPE">
       <EntityTypeMapping TypeName="AUCTION_DBModel.USER_TYPE">
         <MappingFragment StoreEntitySet="USER_TYPE">
@@ -34,7 +45,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="USERS">
-      <EntityTypeMapping TypeName="AUCTION_DBModel.USER">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.USERS">
         <MappingFragment StoreEntitySet="USERS">
           <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
           <ScalarProperty Name="LOGIN_USER" ColumnName="LOGIN_USER" />

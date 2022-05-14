@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AUCTION_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="IMAGE">
+  <EntityType Name="IMAGES">
     <Key>
       <PropertyRef Name="ID_IMAGE" />
     </Key>
@@ -9,7 +9,7 @@
     <NavigationProperty Name="PRODUCTS" Relationship="Self.PRODUCT_IMAGE_FK" FromRole="IMAGES" ToRole="PRODUCTS" />
     <NavigationProperty Name="USERS" Relationship="Self.USER_IMAGE_FK" FromRole="IMAGES" ToRole="USERS" />
   </EntityType>
-  <EntityType Name="PRODUCT">
+  <EntityType Name="PRODUCTS">
     <Key>
       <PropertyRef Name="ID_PRODUCT" />
     </Key>
@@ -23,10 +23,20 @@
     <Property Name="IMAGE_PROD" Type="Int32" />
     <Property Name="OWNER_ID" Type="Int32" />
     <Property Name="TOP_BID_USER_ID" Type="Int32" />
-    <NavigationProperty Name="IMAGE" Relationship="Self.PRODUCT_IMAGE_FK" FromRole="PRODUCTS" ToRole="IMAGES" />
-    <NavigationProperty Name="USER" Relationship="Self.FK__PRODUCT__OWNER_I__693CA210" FromRole="PRODUCTS" ToRole="USERS" />
-    <NavigationProperty Name="USER1" Relationship="Self.FK__PRODUCT__TOP_BID__160F4887" FromRole="PRODUCTS" ToRole="USERS" />
-    <NavigationProperty Name="USERS" Relationship="Self.BASKET" FromRole="PRODUCTS" ToRole="USERS" />
+    <NavigationProperty Name="IMAGES" Relationship="Self.PRODUCT_IMAGE_FK" FromRole="PRODUCTS" ToRole="IMAGES" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK__PRODUCT__OWNER_I__693CA210" FromRole="PRODUCTS" ToRole="USERS" />
+    <NavigationProperty Name="USERS1" Relationship="Self.FK__PRODUCT__TOP_BID__160F4887" FromRole="PRODUCTS" ToRole="USERS" />
+    <NavigationProperty Name="USERS2" Relationship="Self.BASKET" FromRole="PRODUCTS" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="USER_TYPE">
     <Key>
@@ -36,7 +46,7 @@
     <Property Name="USER_TYPENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__USER_TYPE__60A75C0F" FromRole="USER_TYPE" ToRole="USERS" />
   </EntityType>
-  <EntityType Name="USER">
+  <EntityType Name="USERS">
     <Key>
       <PropertyRef Name="ID_USER" />
     </Key>
@@ -45,15 +55,15 @@
     <Property Name="USER_TYPE" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
     <Property Name="PASSWORD_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="AVATAR_USER" Type="Int32" />
-    <NavigationProperty Name="IMAGE" Relationship="Self.USER_IMAGE_FK" FromRole="USERS" ToRole="IMAGES" />
+    <NavigationProperty Name="IMAGES" Relationship="Self.USER_IMAGE_FK" FromRole="USERS" ToRole="IMAGES" />
     <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCT__OWNER_I__693CA210" FromRole="USERS" ToRole="PRODUCTS" />
     <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PRODUCT__TOP_BID__160F4887" FromRole="USERS" ToRole="PRODUCTS" />
     <NavigationProperty Name="USER_TYPE1" Relationship="Self.FK__USERS__USER_TYPE__60A75C0F" FromRole="USERS" ToRole="USER_TYPE" />
     <NavigationProperty Name="PRODUCTS2" Relationship="Self.BASKET" FromRole="USERS" ToRole="PRODUCTS" />
   </EntityType>
   <Association Name="PRODUCT_IMAGE_FK">
-    <End Role="IMAGES" Type="Self.IMAGE" Multiplicity="0..1" />
-    <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="IMAGES">
         <PropertyRef Name="ID_IMAGE" />
@@ -64,8 +74,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="USER_IMAGE_FK">
-    <End Role="IMAGES" Type="Self.IMAGE" Multiplicity="0..1" />
-    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="IMAGES">
         <PropertyRef Name="ID_IMAGE" />
@@ -76,8 +86,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__PRODUCT__OWNER_I__693CA210">
-    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
-    <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USERS">
         <PropertyRef Name="ID_USER" />
@@ -88,8 +98,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__PRODUCT__TOP_BID__160F4887">
-    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
-    <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USERS">
         <PropertyRef Name="ID_USER" />
@@ -101,7 +111,7 @@
   </Association>
   <Association Name="FK__USERS__USER_TYPE__60A75C0F">
     <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="0..1" />
-    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USER_TYPE">
         <PropertyRef Name="USER_TYPE1" />
@@ -112,14 +122,15 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="BASKET">
-    <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
-    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
   </Association>
   <EntityContainer Name="AUCTION_DBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="IMAGES" EntityType="Self.IMAGE" />
-    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
+    <EntitySet Name="IMAGES" EntityType="Self.IMAGES" />
+    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="USER_TYPE" EntityType="Self.USER_TYPE" />
-    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" />
     <AssociationSet Name="PRODUCT_IMAGE_FK" Association="Self.PRODUCT_IMAGE_FK">
       <End Role="IMAGES" EntitySet="IMAGES" />
       <End Role="PRODUCTS" EntitySet="PRODUCTS" />

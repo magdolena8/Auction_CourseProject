@@ -86,40 +86,40 @@
     <Compile Include="AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CRUDCommands.cs" />
-    <Compile Include="Models\AUCTION_DB_Model.Context.cs">
+    <Compile Include="Model\Commands\RelayCommand.cs" />
+    <Compile Include="Model\Data\DataWorker.cs" />
+    <Compile Include="Model\AUCTION_DB_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AUCTION_DB_Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AUCTION_DB_Model.cs">
+    <Compile Include="Model\AUCTION_DB_Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AUCTION_DB_Model.Designer.cs">
+    <Compile Include="Model\AUCTION_DB_Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\IMAGE.cs">
+    <Compile Include="Model\IMAGES.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PRODUCT.cs">
+    <Compile Include="Model\PRODUCTS.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\USER.cs">
+    <Compile Include="Model\USERS.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\USER_TYPE.cs">
+    <Compile Include="Model\USER_TYPE.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel.cs" />
     <Compile Include="Serialization\ProductSerializer.cs" />
+    <Compile Include="ViewModel\DataManageVM.cs" />
     <Page Include="AddProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,11 +168,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\AUCTION_DB_Model.edmx">
+    <EntityDeploy Include="Model\AUCTION_DB_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AUCTION_DB_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\AUCTION_DB_Model.edmx.diagram">
+    <None Include="Model\AUCTION_DB_Model.edmx.diagram">
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -184,9 +184,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
@@ -203,12 +201,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\AUCTION_DB_Model.Context.tt">
+    <Content Include="Model\AUCTION_DB_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
       <LastGenOutput>AUCTION_DB_Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\AUCTION_DB_Model.tt">
+    <Content Include="Model\AUCTION_DB_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
       <LastGenOutput>AUCTION_DB_Model.cs</LastGenOutput>
