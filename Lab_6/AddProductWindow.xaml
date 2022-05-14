@@ -42,7 +42,7 @@
         </Border>
         <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Stretch">
             <Button VerticalAlignment="Top" Margin=" 0 7 0 0" Height="30" Width="100" Content="{DynamicResource UploadPhoto}" MouseDoubleClick ="UplodPhoto"/>
-            <Button VerticalAlignment="Bottom" Margin=" 0 7 0 0" Height="30" Width="100" Content="{DynamicResource DoneAddingProduct}" MouseDoubleClick ="AddUserProduct"/>
+            <Button VerticalAlignment="Bottom" Margin=" 0 7 0 0" Height="30" Width="100" Content="{DynamicResource DoneAddingProduct}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"  Height="106" >
             <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
@@ -51,7 +51,7 @@
             <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="116" Width="Auto">
-            <TextBox x:Name="Title" FontSize="16" />
+            <TextBox x:Name="Title" FontSize="16"/>
             <TextBox x:Name="Price" FontSize="16" />
             <!--<TextBox x:Name="TimeLeft" FontSize="16" />-->
             <DatePicker x:Name="TimePicker" Padding="0"/>

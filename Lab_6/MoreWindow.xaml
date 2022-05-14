@@ -38,7 +38,8 @@
             <ColumnDefinition Width="177*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="Image"  Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+        <Image x:Name="Image"  Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = Image, Mode=TwoWay}"/>
+        <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Click="editPhoto" Visibility="Hidden" Grid.Row="2" HorizontalAlignment="Stretch" Width="Auto" Margin="20"/>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"  Height="106" >
             <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
             <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
@@ -47,12 +48,15 @@
             <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button x:Name="deleteBtn">
+            <Button x:Name="doneEditBtn" Background="AliceBlue"  Click="doneEdit" Visibility="Hidden" Command="{Binding ViewModel.EditCommand}" CommandParameter="{Binding ViewModel.DataContext}" Height="17" Width="75">
+                Готово
+            </Button>
+            <Button x:Name="deleteBtn" MouseDoubleClick="deleteProduct" >
                 <Button.Background>
                     <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\delete.png" />
                 </Button.Background>
             </Button>
-            <Button x:Name="editBtn">
+            <Button x:Name="editBtn" MouseDoubleClick="editProduct">
                 <Button.Background>
                     <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\edit.png" />
                 </Button.Background>
@@ -64,15 +68,15 @@
             </Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="116" Width="Auto">
-            <TextBox x:Name="Title" FontSize="16" IsReadOnly="True"/>
-            <TextBox x:Name="Price" FontSize="16" IsReadOnly="True"/>
-            <TextBox x:Name="TimeLeft" FontSize="16" IsReadOnly="True"/>
-            <TextBox x:Name="Bids" FontSize="16" IsReadOnly="True"/>
-            <TextBox x:Name="Type" FontSize="16" IsReadOnly="True"/>
+            <TextBox x:Name="Title" FontSize="16" IsReadOnly="True" Text="{Binding Path = Title, Mode=TwoWay}"/>
+            <TextBox x:Name="Price" FontSize="16" IsReadOnly="True" Text="{Binding Path = Price, Mode=TwoWay}"/>
+            <TextBox x:Name="TimeLeft" FontSize="16" IsReadOnly="True" Text="{Binding Path = TimeLeft, Mode=TwoWay}"/>
+            <TextBox x:Name="Bids" FontSize="16" IsReadOnly="True" Text="{Binding Path = Bids, Mode=TwoWay}"/>
+            <TextBox x:Name="Type" FontSize="16" IsReadOnly="True" Text="{Binding Path = Type, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBlock FontSize="16" Text="{DynamicResource Description}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-            <TextBox x:Name="Description" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap" MaxLength="300"/>
+            <TextBox x:Name="Description" Text="{Binding Path = Description}" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap" MaxLength="300"/>
         </StackPanel>
     </Grid>
 </Window>

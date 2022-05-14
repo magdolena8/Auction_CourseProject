@@ -63,7 +63,10 @@
                 </TabItem.Header>
                 <TabItem.Content>
 
-                    <ListBox x:Name="Products" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="MoreAbout">
+                    <ListBox x:Name="ProductList" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProsuct}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="MoreAbout">
+                        <!--<CommandBinding>
+                            <CommandBinding Command="New" Executed="Edit"/>
+                        </CommandBinding>-->
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -71,8 +74,8 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Gainsboro" BorderThickness="3">
-                                    <StackPanel Margin="5" Orientation="Horizontal" Width="Auto" Background="#238C47">
+                                <Border BorderBrush="Gainsboro" BorderThickness="2">
+                                    <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200" Background="#238C47">
 
                                         <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path=Image}" />
 

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AUCTION_DBModelContainer" CdmEntityContainer="AUCTION_DBEntities">
+    <EntitySetMapping Name="IMAGES">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.IMAGE">
+        <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="ID_IMAGE" ColumnName="ID_IMAGE" />
+          <ScalarProperty Name="LINK" ColumnName="LINK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTS">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCTS">
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="ENDTIME" ColumnName="ENDTIME" />
+          <ScalarProperty Name="BIDS" ColumnName="BIDS" />
+          <ScalarProperty Name="PROD_DESCRIPTION" ColumnName="PROD_DESCRIPTION" />
+          <ScalarProperty Name="TYPE_PROD" ColumnName="TYPE_PROD" />
+          <ScalarProperty Name="IMAGE_PROD" ColumnName="IMAGE_PROD" />
+          <ScalarProperty Name="OWNER_ID" ColumnName="OWNER_ID" />
+          <ScalarProperty Name="TOP_BID_USER_ID" ColumnName="TOP_BID_USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_TYPE">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.USER_TYPE">
+        <MappingFragment StoreEntitySet="USER_TYPE">
+          <ScalarProperty Name="USER_TYPE1" ColumnName="USER_TYPE" />
+          <ScalarProperty Name="USER_TYPENAME" ColumnName="USER_TYPENAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="AUCTION_DBModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="LOGIN_USER" ColumnName="LOGIN_USER" />
+          <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+          <ScalarProperty Name="PASSWORD_USER" ColumnName="PASSWORD_USER" />
+          <ScalarProperty Name="AVATAR_USER" ColumnName="AVATAR_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BASKET" TypeName="AUCTION_DBModel.BASKET" StoreEntitySet="BASKET">
+      <EndProperty Name="PRODUCTS">
+        <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+      </EndProperty>
+      <EndProperty Name="USERS">
+        <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AUCTION_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BASKET">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+      <PropertyRef Name="ID_PRODUCT" />
+    </Key>
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="ID_PRODUCT" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMAGES">
+    <Key>
+      <PropertyRef Name="ID_IMAGE" />
+    </Key>
+    <Property Name="ID_IMAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LINK" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID_PRODUCT" />
+    </Key>
+    <Property Name="ID_PRODUCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITLE" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PRICE" Type="money" Nullable="false" />
+    <Property Name="ENDTIME" Type="datetime" Nullable="false" />
+    <Property Name="BIDS" Type="int" />
+    <Property Name="PROD_DESCRIPTION" Type="varchar" MaxLength="500" />
+    <Property Name="TYPE_PROD" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="IMAGE_PROD" Type="int" />
+    <Property Name="OWNER_ID" Type="int" />
+    <Property Name="TOP_BID_USER_ID" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "AUCTION_DB.dbo.PRODUCTS_OWNERS" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="PRODUCTS_OWNERS">
+          <Property Name="ID_USER" Type="int" />
+          <Property Name="ID_PRODUCT" Type="int" />
+        </EntityType>-->
+  <EntityType Name="USER_TYPE">
+    <Key>
+      <PropertyRef Name="USER_TYPE" />
+    </Key>
+    <Property Name="USER_TYPE" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="USER_TYPENAME" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LOGIN_USER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_TYPE" Type="char" MaxLength="5" />
+    <Property Name="PASSWORD_USER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AVATAR_USER" Type="int" />
+  </EntityType>
+  <Association Name="FK__BASKET__ID_PRODU__0E6E26BF">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+    <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Principal>
+      <Dependent Role="BASKET">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BASKET__ID_USER__0D7A0286">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="BASKET">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCT__OWNER_I__693CA210">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="OWNER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCT__TOP_BID__160F4887">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="TOP_BID_USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "AUCTION_DB.dbo.PRODUCTS_OWNERS", на которую ссылается связь.
+        <Association Name="FK__PRODUCTS___ID_PR__6C190EBB" />-->
+  <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "AUCTION_DB.dbo.PRODUCTS_OWNERS", на которую ссылается связь.
+        <Association Name="FK__PRODUCTS___ID_US__6B24EA82" />-->
+  <Association Name="FK__USERS__USER_TYPE__60A75C0F">
+    <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_TYPE">
+        <PropertyRef Name="USER_TYPE" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="USER_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_IMAGE_FK">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="ID_IMAGE" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="IMAGE_PROD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_IMAGE_FK">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="ID_IMAGE" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="AVATAR_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище AUCTION_DBModelContainer">
+    <EntitySet Name="BASKET" EntityType="Self.BASKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_TYPE" EntityType="Self.USER_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BASKET__ID_PRODU__0E6E26BF" Association="Self.FK__BASKET__ID_PRODU__0E6E26BF">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="BASKET" EntitySet="BASKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BASKET__ID_USER__0D7A0286" Association="Self.FK__BASKET__ID_USER__0D7A0286">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="BASKET" EntitySet="BASKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCT__OWNER_I__693CA210" Association="Self.FK__PRODUCT__OWNER_I__693CA210">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCT__TOP_BID__160F4887" Association="Self.FK__PRODUCT__TOP_BID__160F4887">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__USER_TYPE__60A75C0F" Association="Self.FK__USERS__USER_TYPE__60A75C0F">
+      <End Role="USER_TYPE" EntitySet="USER_TYPE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_IMAGE_FK" Association="Self.PRODUCT_IMAGE_FK">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_IMAGE_FK" Association="Self.USER_IMAGE_FK">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

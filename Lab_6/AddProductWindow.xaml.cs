@@ -42,28 +42,28 @@ namespace Lab_6
                 MessageBox.Show("Неверный формат");
             }
         }
-        private void AddUserProduct(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //DateTime? dt = new DateTime();
-                //dt = TimePicker.SelectedDate;
-                try
-                {
-                    Product userProduct = new Product(Title.Text, Price.Text, (DateTime)TimePicker.SelectedDate, 0, Description.Text, Type.Text, photoPath);
-                }
-                catch
-                {
-                    MessageBox.Show("Date error"); return;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error"); return;
-            }
-            MessageBox.Show("DONE");
-            //AddProductWindow moreWindow = new AddProductWindow();
-        }
+        //private void AddUserProduct(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        try
+        //        {
+        //            Product userProduct = new Product(Title.Text, Price.Text, (DateTime)TimePicker.SelectedDate, 0, Description.Text, Type.Text, photoPath);
+        //            MainWindow.ProductList.Add(userProduct);
+        //            Serialization.ProductSerializer.Serialize(MainWindow.ProductList, Serialization.ProductSerializer.XMLDataPath);
+        //        } 
+        //        catch
+        //        {
+        //            MessageBox.Show("Date error"); return;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Error"); return;
+        //    }
+        //    MessageBox.Show("DONE");
+        //    //AddProductWindow moreWindow = new AddProductWindow();
+        //}
 
     }
 }
