@@ -15,7 +15,20 @@
     <v:String x:Key="UploadPhoto">Загрузить фото</v:String>
     <v:String x:Key="EditPhoto">Изменить фото</v:String>
     <v:String x:Key="DoneAddingProduct">Готово</v:String>
-
+    <v:String x:Key="PlaceBid">Сделать ставку</v:String>
+    <v:String x:Key="Bid">Cтавка:</v:String>
+    <BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />
+    <ControlTemplate x:Key="validationFailed">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Violet" BorderThickness="2">
+                <AdornedElementPlaceholder />
+            </Border>
+            <TextBlock Foreground="Red" FontSize="26" FontWeight="Bold">!</TextBlock>
+        </StackPanel>
+    </ControlTemplate>
+    <!--<ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+        <Button>qweqwe</Button>
+    </ControlTemplate>-->
     <!--<v:Image x:Name="DeleteImage" Source="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\free-icon-font-cross-3917759.png" />-->
     
 </ResourceDictionary>

@@ -3,11 +3,8 @@ D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\Lab_6.exe
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\Lab_6.pdb
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.csproj.AssemblyReference.cache
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.csproj.SuggestedBindingRedirects.cache
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\MainWindow.g.cs
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\App.g.cs
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6_MarkupCompile.cache
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6_MarkupCompile.lref
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\MainWindow.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.g.resources
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.Properties.Resources.resources
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.csproj.GenerateResource.cache
@@ -15,10 +12,7 @@ D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.csproj.CoreCompileInputs.cache
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.exe
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.pdb
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Resources\Dictionary1.baml
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\App.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Resources\Dictionary2.baml
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\MoreWindow.g.cs
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\MoreWindow.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\AddProductWindow.g.cs
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\AddProductWindow.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\EntityFramework.dll
@@ -27,3 +21,12 @@ D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\EntityFramework.xml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\EntityFramework.SqlServer.xml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6.csproj.CopyComplete
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Lab_6_Content.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\MainWindow.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\MoreWindow.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\App.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\App.baml
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\MainWindow.baml
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\MoreWindow.baml
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\System.Windows.Interactivity.dll
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\bin\Debug\Microsoft.Expression.Interactions.xml
