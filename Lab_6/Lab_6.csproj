@@ -89,8 +89,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddProductWindow.xaml.cs">
-      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    <Compile Include="AddNewProductWindow.xaml.cs">
+      <DependentUpon>AddNewProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AutentificationWindow.xaml.cs">
+      <DependentUpon>AutentificationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Commands\RelayCommand.cs" />
     <Compile Include="Model\Data\DataWorker.cs" />
@@ -109,6 +112,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Data\UserDataWorker.cs" />
     <Compile Include="Model\IMAGES.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
@@ -121,13 +125,27 @@
     <Compile Include="Model\USER_TYPE.cs">
       <DependentUpon>AUCTION_DB_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CustomControls\AdminProductsList.xaml.cs">
+      <DependentUpon>AdminProductsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ProductVM.cs" />
+    <Compile Include="ViewModel\UserVM.cs" />
+    <Compile Include="ViewModel\VMManager.cs" />
     <Compile Include="View\MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Serialization\ProductSerializer.cs" />
     <Compile Include="ViewModel\DataManageVM.cs" />
-    <Page Include="AddProductWindow.xaml">
+    <Compile Include="WNDManager.cs" />
+    <Page Include="AddNewProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AutentificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CustomControls\AdminProductsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
