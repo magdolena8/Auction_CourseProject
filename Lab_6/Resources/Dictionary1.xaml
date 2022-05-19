@@ -11,6 +11,10 @@
     <v:String x:Key="TimeLeftAdding">Время торгов(дни):</v:String>
     <v:String x:Key="Bids">Ставок:</v:String>
     <v:String x:Key="Type">Тип:</v:String>
+    <v:String x:Key="Seller">Продавец:</v:String>
+    <v:String x:Key="ID">ID:</v:String>
+    <v:String x:Key="Login">Логин:</v:String>
+    <v:String x:Key="ProductsCount">Товаров на площадке:</v:String>
     <v:String x:Key="Description">Описание:</v:String>
     <v:String x:Key="UploadPhoto">Загрузить фото</v:String>
     <v:String x:Key="EditPhoto">Изменить фото</v:String>
@@ -23,6 +27,7 @@
     <v:String x:Key="Register">Зарегистрироваться</v:String>
     <v:String x:Key="EnterAsGuest">Войти как гость</v:String>
     <BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />
+    <BitmapImage x:Key="StandartAvatar" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_avatar.png" />
     <ControlTemplate x:Key="validationFailed">
         <StackPanel Orientation="Horizontal">
             <Border BorderBrush="Violet" BorderThickness="2">

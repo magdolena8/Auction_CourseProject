@@ -9,12 +9,12 @@ Lab_6
 none
 false
 DEBUG;TRACE
-D:\Stud\OOP\4_sem\Lab_6\Lab_6\View\App.xaml
-7-2068510001
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\App.xaml
+111056522903
 2-538567481
-261938712910
+29-1901398493
 211529093982
-AddNewProductWindow.xaml;AutentificationWindow.xaml;Resources\CustomControls\AdminProductsList.xaml;View\MainWindow.xaml;View\MoreWindow.xaml;Resources\Dictionary1.xaml;Resources\Dictionary2.xaml;
+View\AddNewProductWindow.xaml;View\AdminMainWindow.xaml;View\AutentificationWindow.xaml;Resources\CustomControls\AdminProductsList.xaml;Resources\CustomControls\AdminUsersList.xaml;View\AdminPage.xaml;View\AdminProductInfo.xaml;View\MainWindow.xaml;View\MoreWindow.xaml;Resources\Dictionary1.xaml;Resources\Dictionary2.xaml;
 
 True
 

@@ -85,14 +85,17 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="View\App.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddNewProductWindow.xaml.cs">
+    <Compile Include="View\AddNewProductWindow.xaml.cs">
       <DependentUpon>AddNewProductWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutentificationWindow.xaml.cs">
+    <Compile Include="View\AdminMainWindow.xaml.cs">
+      <DependentUpon>AdminMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AutentificationWindow.xaml.cs">
       <DependentUpon>AutentificationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Commands\RelayCommand.cs" />
@@ -128,20 +131,32 @@
     <Compile Include="Resources\CustomControls\AdminProductsList.xaml.cs">
       <DependentUpon>AdminProductsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ProductVM.cs" />
-    <Compile Include="ViewModel\UserVM.cs" />
-    <Compile Include="ViewModel\VMManager.cs" />
+    <Compile Include="Resources\CustomControls\AdminUsersList.xaml.cs">
+      <DependentUpon>AdminUsersList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AdminDataManageVM.cs" />
+    <Compile Include="ViewModels\ProductVM.cs" />
+    <Compile Include="ViewModels\UserVM.cs" />
+    <Compile Include="View\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminProductInfo.xaml.cs">
+      <DependentUpon>AdminProductInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Serialization\ProductSerializer.cs" />
-    <Compile Include="ViewModel\DataManageVM.cs" />
+    <Compile Include="ViewModels\DataManageVM.cs" />
     <Compile Include="WNDManager.cs" />
-    <Page Include="AddNewProductWindow.xaml">
+    <Page Include="View\AddNewProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AutentificationWindow.xaml">
+    <Page Include="View\AdminMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AutentificationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,11 +164,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\CustomControls\AdminUsersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminProductInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="View\App.xaml.cs">
+    <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
