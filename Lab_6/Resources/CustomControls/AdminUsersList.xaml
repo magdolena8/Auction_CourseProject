@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Lab_6.Resources.CustomControls.AdminUsersList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lab_6.Resources.CustomControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ListBox x:Name="UsersList" ItemsSource="{Binding AllUsers, Mode=TwoWay}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gainsboro" BorderThickness="2">
+                        <StackPanel Margin="5" Orientation="Horizontal" Width="304" Height="70" Background="#238C47" >
+                            <Image Width="50" Margin="7" VerticalAlignment="Center" Source="{Binding Path = USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
+
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
+                                <TextBlock FontSize="16" Text="{DynamicResource Login}"/>
+                                <TextBlock FontSize="16" Text="{DynamicResource ProductsCount}"/>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Margin="0">
+                                <TextBlock FontSize="16" Text="{Binding Path=ID_USER}" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="16" Text="{Binding Path=LOGIN_USER}" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="16" Text="{Binding Path=PRODUCTS_COUNT}" HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                            <!--It Works !-->
+                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction Command="{Binding RelativeSource=
+			                                                                    {RelativeSource FindAncestor, 
+			                                                                    AncestorType={x:Type Window}}, 
+			                                                                    Path = DataContext.OpenProductInfoWnd}"
+                                                                   CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

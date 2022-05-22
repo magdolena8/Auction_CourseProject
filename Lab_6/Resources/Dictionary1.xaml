@@ -22,7 +22,8 @@
     <v:String x:Key="PlaceBid">Сделать ставку</v:String>
     <v:String x:Key="Bid">Cтавка:</v:String>
     <v:String x:Key="UserName">Логин</v:String>
-    <v:String x:Key="UserPassword">Пароль</v:String>
+    <v:String x:Key="UserPassword">Пароль:</v:String>
+    <v:String x:Key="UserRights">Права:</v:String>
     <v:String x:Key="LogIn">Войти</v:String>
     <v:String x:Key="Register">Зарегистрироваться</v:String>
     <v:String x:Key="EnterAsGuest">Войти как гость</v:String>

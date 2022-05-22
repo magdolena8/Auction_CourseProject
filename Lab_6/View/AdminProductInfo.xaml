@@ -1,0 +1,78 @@
+﻿<Window x:Class="Lab_6.AdminProductInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_6"
+        xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
+        mc:Ignorable="d"
+        Title="AdminProductInfo" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Margin" Value="0 0 10 0"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Margin" Value="5 0 5 0"/>
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#63DD8D">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="213*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="16*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="Image"  Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = Product.PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
+        <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Command="{Binding EditImage}" Visibility="Collapsed" Grid.Row="2" Width="Auto" HorizontalAlignment="Center" />
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"  Height="Auto" >
+            <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource Seller}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="0,35,0,0" Grid.RowSpan="2" Width="175">
+            <Button x:Name="doneEditBtn" Command="{Binding EditProduct}" CommandParameter="{Binding}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75" Click="doneEditBtnClick">
+                Готово
+            </Button>
+            <Button x:Name="deleteBtn" Margin="10 0 10 0" Command="{Binding DeleteProduct}" CommandParameter="{Binding}">
+                <Button.Background>
+                    <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\delete.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="editBtn" Click="editBtnClick" Margin="10 0 10 0">
+                <Button.Background>
+                    <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\edit.png" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="Auto" Width="Auto">
+            <TextBox x:Name="Title" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.TITLE, Mode=TwoWay}"/>
+            <TextBox x:Name="Price" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.PRICE, Mode=TwoWay}"/>
+            <TextBox x:Name="TimeLeft" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.ENDTIME, Mode=TwoWay}"/>
+            <TextBox x:Name="Bids" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.BIDS, Mode=TwoWay}"/>
+            <TextBox x:Name="Type" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.TYPE_PROD, Mode=TwoWay}"/>
+            <TextBox x:Name="Seller" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.OWNER_ID, Mode=OneWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,213,0,0" Grid.RowSpan="2">
+            <TextBlock FontSize="16" Text="{DynamicResource Description}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <TextBox x:Name="Description" Text="{Binding Path = Product.PROD_DESCRIPTION}" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap" MaxLength="300"/>
+        </StackPanel>
+    </Grid>
+</Window>
+

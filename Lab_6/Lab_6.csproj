@@ -143,6 +143,9 @@
     <Compile Include="View\AdminProductInfo.xaml.cs">
       <DependentUpon>AdminProductInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BasketList.xaml.cs">
+      <DependentUpon>BasketList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminProductInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BasketList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

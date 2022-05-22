@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AUCTION_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="IMAGES">
+    <Key>
+      <PropertyRef Name="ID_IMAGE" />
+    </Key>
+    <Property Name="ID_IMAGE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LINK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.PRODUCT_IMAGE_FK" FromRole="IMAGES" ToRole="PRODUCTS" />
+    <NavigationProperty Name="USERS" Relationship="Self.USER_IMAGE_FK" FromRole="IMAGES" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID_PRODUCT" />
+    </Key>
+    <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TITLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ENDTIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BIDS" Type="Int32" />
+    <Property Name="PROD_DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TYPE_PROD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IMAGE_PROD" Type="Int32" />
+    <Property Name="OWNER_ID" Type="Int32" />
+    <Property Name="TOP_BID_USER_ID" Type="Int32" />
+    <NavigationProperty Name="IMAGES" Relationship="Self.PRODUCT_IMAGE_FK" FromRole="PRODUCTS" ToRole="IMAGES" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK__PRODUCT__OWNER_I__693CA210" FromRole="PRODUCTS" ToRole="USERS" />
+    <NavigationProperty Name="USERS1" Relationship="Self.FK__PRODUCT__TOP_BID__160F4887" FromRole="PRODUCTS" ToRole="USERS" />
+    <NavigationProperty Name="USERS2" Relationship="Self.BASKET" FromRole="PRODUCTS" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="USER_TYPE">
+    <Key>
+      <PropertyRef Name="USER_TYPE1" />
+    </Key>
+    <Property Name="USER_TYPE1" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="USER_TYPENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__USER_TYPE__60A75C0F" FromRole="USER_TYPE" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LOGIN_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USER_TYPE" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="PASSWORD_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AVATAR_USER" Type="Int32" />
+    <NavigationProperty Name="IMAGES" Relationship="Self.USER_IMAGE_FK" FromRole="USERS" ToRole="IMAGES" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCT__OWNER_I__693CA210" FromRole="USERS" ToRole="PRODUCTS" />
+    <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PRODUCT__TOP_BID__160F4887" FromRole="USERS" ToRole="PRODUCTS" />
+    <NavigationProperty Name="USER_TYPE1" Relationship="Self.FK__USERS__USER_TYPE__60A75C0F" FromRole="USERS" ToRole="USER_TYPE" />
+    <NavigationProperty Name="PRODUCTS2" Relationship="Self.BASKET" FromRole="USERS" ToRole="PRODUCTS" />
+  </EntityType>
+  <Association Name="PRODUCT_IMAGE_FK">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="ID_IMAGE" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="IMAGE_PROD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_IMAGE_FK">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="ID_IMAGE" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="AVATAR_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCT__OWNER_I__693CA210">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="OWNER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCT__TOP_BID__160F4887">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="TOP_BID_USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERS__USER_TYPE__60A75C0F">
+    <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_TYPE">
+        <PropertyRef Name="USER_TYPE1" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="USER_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BASKET">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="AUCTION_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="IMAGES" EntityType="Self.IMAGES" />
+    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" />
+    <EntitySet Name="USER_TYPE" EntityType="Self.USER_TYPE" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" />
+    <AssociationSet Name="PRODUCT_IMAGE_FK" Association="Self.PRODUCT_IMAGE_FK">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_IMAGE_FK" Association="Self.USER_IMAGE_FK">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCT__OWNER_I__693CA210" Association="Self.FK__PRODUCT__OWNER_I__693CA210">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCT__TOP_BID__160F4887" Association="Self.FK__PRODUCT__TOP_BID__160F4887">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__USER_TYPE__60A75C0F" Association="Self.FK__USERS__USER_TYPE__60A75C0F">
+      <End Role="USER_TYPE" EntitySet="USER_TYPE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="BASKET" Association="Self.BASKET">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

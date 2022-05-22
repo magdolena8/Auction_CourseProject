@@ -43,3 +43,5 @@ D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\AutentificationWindow.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\AdminProductInfo.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\App.g.cs
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\App.baml
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\BasketList.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\BasketList.baml
