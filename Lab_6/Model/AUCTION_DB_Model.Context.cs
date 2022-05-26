@@ -12,19 +12,19 @@ namespace Lab_6.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class AUCTION_DBEntities : DbContext
     {
         public AUCTION_DBEntities()
             : base("name=AUCTION_DBEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<IMAGES> IMAGES { get; set; }
         public virtual DbSet<PRODUCTS> PRODUCTS { get; set; }
         public virtual DbSet<USER_TYPE> USER_TYPE { get; set; }

@@ -18,6 +18,18 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Gainsboro" BorderThickness="2">
+                        <!--<Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
+                                        <Setter Property="BorderBrush" Value="Green"/>
+                                    </DataTrigger>
+                                    --><!--<DataTrigger Binding="{Binding Path=ShowImport}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>--><!--
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>-->
                         <StackPanel Margin="5" Orientation="Horizontal" Width="304" Height="70" Background="#238C47" >
                             <Image Width="50" Margin="7" VerticalAlignment="Center" Source="{Binding Path = USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
 

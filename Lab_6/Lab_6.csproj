@@ -146,6 +146,7 @@
     <Compile Include="View\BasketList.xaml.cs">
       <DependentUpon>BasketList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Converters.cs" />
     <Compile Include="View\MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>

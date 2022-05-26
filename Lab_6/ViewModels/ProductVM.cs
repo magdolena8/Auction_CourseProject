@@ -27,6 +27,22 @@ namespace Lab_6.ViewModels
                 NotifyPropertyChanged("Product");
             }
         }
+        //public bool? isUserTopBid
+        //{
+        //    get
+        //    {
+        //        if (Product.ENDTIME < DateTime.Now)
+        //        {
+        //            return null;
+        //        }
+        //        return Product.TOP_BID_USER_ID == UserDataWorker.CurrentUser.ID_USER;
+        //    }
+        //    set
+        //    {
+        //        isUserTopBid = value;
+        //        NotifyPropertyChanged("isUserTopBid");
+        //    }
+        //}
         public ProductVM()
         {
             Product = new PRODUCTS();
@@ -38,6 +54,7 @@ namespace Lab_6.ViewModels
         public ProductVM(PRODUCTS obj)
         {
             Product = obj;
+            //isUserTopBid = obj.TOP_BID_USER_ID == UserDataWorker.CurrentUser.ID_USER;
         }
         private RelayCommand _placeBid;
         public RelayCommand PlaceBid
@@ -58,7 +75,7 @@ namespace Lab_6.ViewModels
                         try
                         {
                             var mainContext = Application.Current.MainWindow.DataContext;
-                            
+
                             string resultStr;
                             decimal bid = Convert.ToDecimal(bidTextBox.Text);
                             PRODUCTS updatedProduct = DataWorker.PlaceBid(this.Product, bid, UserDataWorker.CurrentUser);
@@ -83,6 +100,18 @@ namespace Lab_6.ViewModels
             }
 
         }
+        private RelayCommand _addToBasket;
+        public RelayCommand AddToBasket
+        {
+            get
+            {
+                return _addToBasket ?? new RelayCommand(obj =>
+                {
+                    PRODUCTS product = obj as PRODUCTS;
+                    DataWorker.AddProductToBasket(UserDataWorker.CurrentUser.ID_USER, product);
+                });
+            }
+        }
         private RelayCommand _editImage;
         public RelayCommand EditImage
         {
@@ -98,7 +127,8 @@ namespace Lab_6.ViewModels
                         try
                         {
 
-                            this.Product.PRODUCT_IMAGE_LINK = DataWorker.SetImageLinkToProduct(this.Product, imagePath);
+                            this.Product.PRODUCT_IMAGE_LINK = imagePath;
+                            //this.Product.PRODUCT_IMAGE_LINK = DataWorker.SetImageLinkToProduct(this.Product, imagePath);
                             NotifyPropertyChanged("Product");
                             MessageBox.Show("ImageEdited");
 
@@ -161,6 +191,10 @@ namespace Lab_6.ViewModels
                             MessageBox.Show("Товар Успешно удален");
                             //product = updatedProduct;
                             //wnd.BeginInit();
+                            product = null;
+
+                            NotifyPropertyChanged("UserProducts");
+
                         }
                         else
                         {

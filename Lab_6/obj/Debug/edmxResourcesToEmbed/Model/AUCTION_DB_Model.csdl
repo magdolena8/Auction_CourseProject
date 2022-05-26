@@ -32,7 +32,7 @@
     <Key>
       <PropertyRef Name="USER_TYPE1" />
     </Key>
-    <Property Name="USER_TYPE1" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="USER_TYPE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="USER_TYPENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__USER_TYPE__60A75C0F" FromRole="USER_TYPE" ToRole="USERS" />
   </EntityType>
@@ -42,7 +42,7 @@
     </Key>
     <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LOGIN_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="USER_TYPE" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="USER_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PASSWORD_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="AVATAR_USER" Type="Int32" />
     <NavigationProperty Name="IMAGES" Relationship="Self.USER_IMAGE_FK" FromRole="USERS" ToRole="IMAGES" />

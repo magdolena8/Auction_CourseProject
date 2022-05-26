@@ -50,7 +50,7 @@ namespace Lab_6.ViewModels
                     USERS logResult = UserDataWorker.LogInUser(this.User);
                     if (logResult != null)
                     {
-                        if (logResult.USER_TYPE == "user ")
+                        if (logResult.USER_TYPE == "user")
                         {
                             WNDManager.openUserMainWindow(autWnd, logResult);
                             return;
@@ -68,38 +68,42 @@ namespace Lab_6.ViewModels
                 });
             }
         }
-        private RelayCommand _logInGuest;
-        public RelayCommand LogInGuest
-        {
-            get
-            {
-                return _logInGuest ?? new RelayCommand(obj =>
-                {
-                    MainWindow mainWnd = new MainWindow();
-                    mainWnd.Show();
-                });
-            }
-        }
-
         private RelayCommand _registerUser;
         public RelayCommand RegisterUser
         {
             get
             {
-                return null;
-                //return _registerUser ?? new RelayCommand(obj =>
-                //{
-                //    USERS user = obj as USERS;
-                //    user = UserDataWorker.LogInUser(user);
-                //    if(user != null)
-                //    {
-                //        MainWindow mainWnd = new MainWindow();
-
-                //    }
-                //});
+                return _registerUser ?? new RelayCommand(obj =>
+                {
+                    AutentificationWindow autWnd = obj as AutentificationWindow;
+                    USERS registrationResult = UserDataWorker.RegisterUser(this.User);
+                    if (registrationResult != null)
+                    {
+                        WNDManager.openUserMainWindow(autWnd, registrationResult);
+                    }
+                    else MessageBox.Show("Error LogIn or Password");
+                });
             }
-
         }
+
+        //private RelayCommand _registerUser;
+        //public RelayCommand RegisterUser
+        //{
+        //    get
+        //    {
+        //        return _registerUser ?? new RelayCommand(obj =>
+        //        {
+        //            USERS user = obj as USERS;
+        //            user = UserDataWorker.LogInUser(user);
+        //            if (user != null)
+        //            {
+        //                MainWindow mainWnd = new MainWindow();
+
+        //            }
+        //        });
+        //    }
+
+        //}
 
 
 

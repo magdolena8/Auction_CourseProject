@@ -11,9 +11,7 @@ namespace Lab_6.Model
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class IMAGES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +20,7 @@ namespace Lab_6.Model
             this.PRODUCTS = new ObservableCollection<PRODUCTS>();
             this.USERS = new ObservableCollection<USERS>();
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
+    
         public int ID_IMAGE { get; set; }
         public string LINK { get; set; }
     

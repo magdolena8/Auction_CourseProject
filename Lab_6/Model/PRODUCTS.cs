@@ -10,9 +10,9 @@
 namespace Lab_6.Model
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class PRODUCTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,14 +28,15 @@ namespace Lab_6.Model
         //{
         //    get
         //    {
-        //        DateTime now = new DateTime();
-                
 
-        //        return (new DateTime() + DateTime.Now);
-        //        //return (System.DateTime)((System.DateTime)ENDTIME - now);
+        //        //System.DateTime date1 = ENDTIME.Subtract(TimeSpan.Now);
+        //        //    dt = ENDTIME.Subtract(DateTime.Now).TotalHours;
+        //        //return dt;
+        //        return ENDTIME;
+
         //    }
         //    set
-        //    {
+        //    { 
         //        ENDTIME = value;
         //    }
         //}
@@ -45,6 +46,40 @@ namespace Lab_6.Model
         public Nullable<int> IMAGE_PROD { get; set; }
         public Nullable<int> OWNER_ID { get; set; }
         public Nullable<int> TOP_BID_USER_ID { get; set; }
+        public bool? isUserTopBid
+        {
+            get
+            {
+                if (ENDTIME < DateTime.Now)
+                {
+                    return null;
+                }
+                return this.TOP_BID_USER_ID == UserDataWorker.CurrentUser.ID_USER;
+                //return true;
+            }
+            set
+            {
+                isUserTopBid = value;
+
+            }
+        }
+        public bool isTrading
+        {
+            get
+            {
+                if (ENDTIME < DateTime.Now)
+                {
+                    return false;
+                }
+                return true;
+                //return true;
+            }
+            set
+            {
+                isUserTopBid = value;
+                //NotifyPropertyChanged("isUserTopBid");
+            }
+        }
         [NotMapped]
         private string _imageLink;
         [NotMapped]
@@ -60,7 +95,6 @@ namespace Lab_6.Model
                 return _imageLink ?? DataWorker.GetImageLinkByProdImgID(IMAGE_PROD);
             }
         }
-
 
         public virtual IMAGES IMAGES { get; set; }
         public virtual USERS USERS { get; set; }

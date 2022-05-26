@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Lab_6.Resources.CustomControls"
+             xmlns:local2="clr-namespace:Lab_6.View.Converters"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <ListBox x:Name="ProductList" ItemsSource="{Binding AllProducts, Mode=TwoWay}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <UserControl.Resources>
+        <local2:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
+    </UserControl.Resources>
+    <ListBox x:Name="ProductList" ItemsSource="{Binding UserBasket, Mode=TwoWay}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Panel.ZIndex="1">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -16,34 +20,74 @@
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <Border BorderBrush="Gainsboro" BorderThickness="2">
-                    <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200" Background="#238C47" >
-                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
+                <Border BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="5" Width="500" Height="200">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
+                                        <Setter Property="Background" Value="#00A369"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="False">
+                                        <Setter Property="Background" Value="#a06060"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="{x:Null}">
+                                        <Setter Property="Background" Value="#545f63"/>
+                                    </DataTrigger>
+                                    <!--<DataTrigger Binding="{Binding Path=isTrading}" Value="False">
+                                        <Setter Property="Background" Value="#00A369"/>
+                                    </DataTrigger>-->
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
-                            <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
-                            <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
-                            <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
-                            <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center" Margin="40">
-                            <TextBlock FontSize="16" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="16" Text="{Binding Path=PRICE}" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="16" Text="{Binding Path=ENDTIME}" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />
-                        </StackPanel>
-                        <!--It Works !-->
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding RelativeSource=
+                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Label HorizontalAlignment="Center" Foreground="#f3f4a9" FontSize="30" FontStyle="Normal" FontFamily="Verdana">SOLD
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=isTrading}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=isTrading}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <!--<DataTrigger Binding="{Binding Path=isTrading}" Value="False">
+                                        <Setter Property="Background" Value="#00A369"/>
+                                    </DataTrigger>-->
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
+                                    <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
+                                    <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
+                                    <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
+                                    <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
+                                </StackPanel>
+                                <StackPanel VerticalAlignment="Center" Margin="40">
+                                    <TextBlock FontSize="16" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=PRICE, StringFormat={}{0:C}}" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=ENDTIME, Converter={StaticResource DateTimeToTimespanConverter}}" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!--It Works !-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction Command="{Binding RelativeSource=
 			                                                                    {RelativeSource FindAncestor, 
 			                                                                    AncestorType={x:Type Window}}, 
 			                                                                    Path = DataContext.OpenProductInfoWnd}"
                                                                    CommandParameter="{Binding}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
             </DataTemplate>

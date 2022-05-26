@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Data;
-
+using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 namespace Lab_6.Model
 {
@@ -16,13 +17,14 @@ namespace Lab_6.Model
 
         //получить отсортированные продукты
         //получить все продукты
-        public static ObservableCollection<PRODUCTS> GetAllProducts() //все продукты, доступые пользователю для полкупки(исключая свою товары)
+        public static ObservableCollection<PRODUCTS> GetAllProducts() //все продукты, доступые пользователю (исключая свои товары)
         {
             using (AUCTION_DBEntities db = new AUCTION_DBEntities())
             {
                 var selector = (from p in db.PRODUCTS
                                 where p.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
-                                select p);
+                                where p.ENDTIME >= DateTime.Now
+                                select p) ;
                 ObservableCollection<PRODUCTS> productsCollection = new ObservableCollection<PRODUCTS>(selector);
                 return productsCollection;
             }
@@ -35,41 +37,61 @@ namespace Lab_6.Model
                 return usersCollection;
             }
         }
-        public static ObservableCollection<PRODUCTS> GetUserBasket()
+        public static ObservableCollection<PRODUCTS> GetUserBasket(USERS user)
         {
             using (AUCTION_DBEntities db = new AUCTION_DBEntities())
             {
-                var selector = from p in db.PRODUCTS
-                               join b in db.Basket
-                               
-
-
+                try
+                {
+                    var selector = from p in db.PRODUCTS
+                                   where p.USERS2.Any(u => u.ID_USER == user.ID_USER)
+                                   select p;
+                    //var selector1 = db.PRODUCTS.Any(x =>)
+                    ObservableCollection<PRODUCTS> userBasket = new ObservableCollection<PRODUCTS>(selector);
+                    return userBasket;
+                }
+                catch (Exception ex) { return null; }
             }
         }
-        //добавить USER
-        //удалить USER
-        //изменить USER
+        public static PRODUCTS AddProductToBasket(int user_id, PRODUCTS product)
+        {
+
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                USERS dbUser = db.USERS.Where(u => u.ID_USER == user_id).Include(c => c.PRODUCTS2).Single();
+                PRODUCTS dbProd = db.PRODUCTS.Where(u => u.ID_PRODUCT == product.ID_PRODUCT).Include(c => c.USERS2).Single();
+                //userBasket.Add(product);
+                //userBasket.FirstOrDefault.
+                //product.USERS2.Add(user);
+                //qwe.PRODUCTS2.Attach(product);
+                dbUser.PRODUCTS2.Add(dbProd);
+                db.SaveChanges();
+                return dbProd;
+            }
+        }
 
         public static PRODUCTS CreateProduct(PRODUCTS product)
         {
             using (AUCTION_DBEntities db = new AUCTION_DBEntities())
             {
-                bool isProductExist = db.PRODUCTS.Any(el => el.ID_PRODUCT == product.ID_PRODUCT);
+                bool isProductExist = db.PRODUCTS.Any(el => el.ID_PRODUCT == product.ID_PRODUCT);   // Бесполезно
                 if (!isProductExist)
                 {
                     ///////Добавить owner'а////////
+                    
                     IMAGES img = new IMAGES();
-                    img.LINK = product.PRODUCT_IMAGE_LINK;
+                    img.LINK = product.PRODUCT_IMAGE_LINK; /////////////////////////////////
                     IMAGES q = db.IMAGES.Add(img);
                     db.SaveChanges();
 
-
+                    product.OWNER_ID = UserDataWorker.CurrentUser.ID_USER;
                     product.BIDS = 0;
                     product.IMAGE_PROD = q.ID_IMAGE;
 
                     db.PRODUCTS.Add(product);
                     db.SaveChanges();
-                    product.PRODUCT_IMAGE_LINK = q.LINK;
+                    //product.IMAGES.LINK = q.LINK;
+                    //product.PRODUCT_IMAGE_LINK = q.LINK;
                     return product;
                 }
                 else return null;
@@ -82,7 +104,10 @@ namespace Lab_6.Model
                 try
                 {
                     PRODUCTS tempProduct = db.PRODUCTS.FirstOrDefault(el => el.ID_PRODUCT == product.ID_PRODUCT);
-                    db.PRODUCTS.Remove(tempProduct);
+                    var qwe = db.PRODUCTS.Where(el => el.ID_PRODUCT == product.ID_PRODUCT).Include(c => c.USERS).Include(x => x.USERS1).Include(v => v.USERS2).Single();
+                    
+                    //tempProduct = null;
+                    db.PRODUCTS.Remove(qwe);
                     db.SaveChanges();
                     return true;
                 }
@@ -102,6 +127,8 @@ namespace Lab_6.Model
                 tempProduct.BIDS = newProduct.BIDS;
                 tempProduct.PROD_DESCRIPTION = newProduct.PROD_DESCRIPTION;
                 tempProduct.TYPE_PROD = newProduct.TYPE_PROD;
+                IMAGES img = db.IMAGES.Where(e => e.ID_IMAGE == tempProduct.IMAGE_PROD).Single();
+                img.LINK = newProduct.PRODUCT_IMAGE_LINK;
                 //tempProduct.PRODUCT_IMAGE_LINK = newProduct.PRODUCT_IMAGE_LINK;
                 //SetImageLinkToProduct(tempProduct, tempProduct.PRODUCT_IMAGE_LINK);
                 //temproduct.IMAGES = newProduct.IMAGES;
@@ -129,8 +156,8 @@ namespace Lab_6.Model
                     tempProduct.PRICE = bid;
                     tempProduct.TOP_BID_USER_ID = user.ID_USER;
                     tempProduct.BIDS += 1;
-                    //temproduct.TOP_BID_USER_ID = UserId; //////!!!!!!!!!upading top bid user!!!!!!!!!!!!!
                     db.SaveChanges();
+                    AddProductToBasket(user.ID_USER, product);
                     return tempProduct;
                     //result = "Bid placed";
                 }
@@ -138,7 +165,24 @@ namespace Lab_6.Model
             return null;
         }
 
+        public static ObservableCollection<PRODUCTS> FindProducts(string str)
+        {
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                if (!string.IsNullOrEmpty(str))
+                {
+                    Regex qwe = new Regex(str);
+                    var result = from i in db.PRODUCTS
+                                 where i.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
+                                 where (i.TITLE.Contains(str) || i.PROD_DESCRIPTION.Contains(str) || i.TYPE_PROD.Contains(str))
+                                 select i;
 
+                    ObservableCollection<PRODUCTS> x = new ObservableCollection<PRODUCTS>(result);
+                    return x;
+                }
+                else return GetAllProducts();
+            }
+        }
 
         //получение ссылок на картинке по PRODUCT_ID
         //public static List<string> GetImageLinksByProdImgID(int? prodImgID)

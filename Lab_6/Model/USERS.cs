@@ -6,14 +6,12 @@
 //     Изменения, вносимые в этот файл вручную, будут перезаписаны при повторном создании кода.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lab_6.Model
 {
     using System;
     using System.Collections.ObjectModel;
-
+    
     public partial class USERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,24 +21,13 @@ namespace Lab_6.Model
             this.PRODUCTS1 = new ObservableCollection<PRODUCTS>();
             this.PRODUCTS2 = new ObservableCollection<PRODUCTS>();
         }
-
+    
         public int ID_USER { get; set; }
         public string LOGIN_USER { get; set; }
         public string USER_TYPE { get; set; }
         public string PASSWORD_USER { get; set; }
         public Nullable<int> AVATAR_USER { get; set; }
-        //custom property
-        [NotMapped]
-        private int _productsCount;
-        public int PRODUCTS_COUNT
-        {
-            get
-            {
-                return DataWorker.GetUserProducts(this).Count;
-            }
-        }
-
-
+    
         public virtual IMAGES IMAGES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<PRODUCTS> PRODUCTS { get; set; }

@@ -7,8 +7,10 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Lab_6.Model;
-
-
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace Lab_6.ViewModels
 {
@@ -32,8 +34,23 @@ namespace Lab_6.ViewModels
             get { return _allProducts; }
             set
             {
+                
                 _allProducts = value;
                 NotifyPropertyChanged("AllProducts");
+            }
+        }
+        //public CollectionView ProductsView { get; private set; }
+
+
+
+        private ObservableCollection<PRODUCTS> _searchResult;
+        public ObservableCollection<PRODUCTS> SearchResult
+        {
+            get { return _searchResult; }
+            set
+            {
+                _searchResult = value;
+                NotifyPropertyChanged("SearchResult");
             }
         }
         private ObservableCollection<PRODUCTS> _userProducts;
@@ -46,12 +63,23 @@ namespace Lab_6.ViewModels
                 NotifyPropertyChanged("UserProducts");
             }
         }
+        private ObservableCollection<PRODUCTS> _userBasket = DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
+        public ObservableCollection<PRODUCTS> UserBasket
+        {
+            get { return _userBasket; }
+            set
+            {
+                _userBasket = value;
+                NotifyPropertyChanged("UserBasket");
+            }
+        }
 
         public DataManageVM(USERS user)
         {
             User = user;
             AllProducts = DataWorker.GetAllProducts();
             UserProducts = DataWorker.GetUserProducts(user);
+            UserBasket =  DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
         }
 
 
@@ -98,6 +126,22 @@ namespace Lab_6.ViewModels
         private void OpenNewProductInfoWNDMethod(PRODUCTS product)
         {
             MoreWindow newMoreInfoWindow = new MoreWindow();
+            if((UserDataWorker.CurrentUser.USER_TYPE!="admin") && (product.OWNER_ID != UserDataWorker.CurrentUser.ID_USER))
+            {
+                Button deleteButton = (Button)newMoreInfoWindow.FindName("deleteBtn");
+                deleteButton.Visibility = Visibility.Collapsed;
+                Button editButton = (Button)newMoreInfoWindow.FindName("editBtn");
+                editButton.Visibility = Visibility.Collapsed;
+            }
+            if (UserDataWorker.CurrentUser.USER_TYPE == "admin" || product.OWNER_ID == UserDataWorker.CurrentUser.ID_USER)
+            {
+                //TextBox newBidTextBlock = (TextBox)newMoreInfoWindow.FindName("newBidTextBlock");
+                //newBidTextBlock.Visibility = Visibility.Collapsed;
+                //Button placePidBtn = (Button)newMoreInfoWindow.FindName("placePidBtn");
+                //placePidBtn.Visibility = Visibility.Collapsed;
+                StackPanel BidPanel = (StackPanel)newMoreInfoWindow.FindName("BidPanel");
+                BidPanel.Visibility = Visibility.Collapsed;   
+            }
             SetCentrePositionAndOpenWnd(newMoreInfoWindow);
             newMoreInfoWindow.DataContext = new ProductVM(product);
         }
@@ -121,13 +165,51 @@ namespace Lab_6.ViewModels
                 {
                     //obj = obj as PRODUCTS;
                     AllProducts = DataWorker.GetAllProducts();
-                    //OpenNewProductInfoWNDMethod((PRODUCTS)obj);
+                    UserBasket = DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
+                    UserProducts = DataWorker.GetUserProducts(UserDataWorker.CurrentUser);
                 }
                 );
             }
         }
-
         #endregion
+
+        private RelayCommand _searchProducts;
+        public RelayCommand SearchProducts
+        {
+            get
+            {
+                return _searchProducts ?? new RelayCommand(obj =>
+                {
+                    //obj = obj as string;
+                    AllProducts = DataWorker.FindProducts((string)obj);
+                    //AllProducts.
+                });
+            }
+        }
+
+
+        public class DateTimeToTimespanConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                DateTime? dateTime = value as DateTime?;
+                if (dateTime != null)
+                {
+                    DateTime r = (DateTime)dateTime;
+                    return ((DateTime)dateTime).Subtract(DateTime.Now);
+
+                }
+                //if (parameter != null && parameter.ToString() == "EN")
+                return ((DateTime)value).ToString("MM-dd-yyyy");
+                //return ((TimeSpan)value).ToString("dd.MM.yyyy");
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
+
     }
 
 }

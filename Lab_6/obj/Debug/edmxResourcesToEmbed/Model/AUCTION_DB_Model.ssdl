@@ -30,17 +30,11 @@
     <Property Name="OWNER_ID" Type="int" />
     <Property Name="TOP_BID_USER_ID" Type="int" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "AUCTION_DB.dbo.PRODUCTS_OWNERS" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
-        <EntityType Name="PRODUCTS_OWNERS">
-          <Property Name="ID_USER" Type="int" />
-          <Property Name="ID_PRODUCT" Type="int" />
-        </EntityType>-->
   <EntityType Name="USER_TYPE">
     <Key>
       <PropertyRef Name="USER_TYPE" />
     </Key>
-    <Property Name="USER_TYPE" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="USER_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="USER_TYPENAME" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="USERS">
@@ -49,7 +43,7 @@
     </Key>
     <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LOGIN_USER" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="USER_TYPE" Type="char" MaxLength="5" />
+    <Property Name="USER_TYPE" Type="varchar" MaxLength="50" />
     <Property Name="PASSWORD_USER" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="AVATAR_USER" Type="int" />
   </EntityType>
@@ -101,12 +95,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "AUCTION_DB.dbo.PRODUCTS_OWNERS", на которую ссылается связь.
-        <Association Name="FK__PRODUCTS___ID_PR__6C190EBB" />-->
-  <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "AUCTION_DB.dbo.PRODUCTS_OWNERS", на которую ссылается связь.
-        <Association Name="FK__PRODUCTS___ID_US__6B24EA82" />-->
   <Association Name="FK__USERS__USER_TYPE__60A75C0F">
     <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="0..1" />
     <End Role="USERS" Type="Self.USERS" Multiplicity="*" />

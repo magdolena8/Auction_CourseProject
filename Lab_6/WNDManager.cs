@@ -14,7 +14,7 @@ namespace Lab_6
     {
         public static void openUserMainWindow(AutentificationWindow autWnd, USERS user)
         {
-            Console.WriteLine("Opened window for common user" + user.LOGIN_USER.ToString());
+            Console.WriteLine("Opened window for common user           --------------          " + user.LOGIN_USER.ToString());
             MainWindow mainWND = new MainWindow();
             mainWND.DataContext = new DataManageVM(user);
             autWnd.Close();

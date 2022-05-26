@@ -41,10 +41,10 @@
         <Image x:Name="Image"  Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = Product.PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
         <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Command="{Binding EditImage}" Visibility="Collapsed" Grid.Row="2" Width="Auto" HorizontalAlignment="Center" />
 
-        <StackPanel Orientation="Horizontal" Width="Auto" Height="42" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="0,213,0,0" >
+        <StackPanel x:Name="BidPanel" Orientation="Horizontal" Width="Auto" Height="42" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="0,213,0,0" >
             <Label Content="{DynamicResource Bid}" Width="50" Height="26"/>
-            <TextBox x:Name="newBidTextBlock" Width="135" Margin="5" Height="22" Text="{Binding Product.PRICE, Mode=OneWay}"/>
-            <Button Width="57" Height="34" Margin="0" Command="{Binding PlaceBid}" CommandParameter="{Binding RelativeSource=
+            <TextBox x:Name="newBidTextBlock" Width="135" Margin="5" Height="22" Text="{Binding Product.PRICE, Mode=OneWay, StringFormat={}{0:C}}"/>
+            <Button x:Name="placePidBtn" Width="57" Height="34" Margin="0" Command="{Binding PlaceBid}" CommandParameter="{Binding RelativeSource=
 			                                                                    {RelativeSource FindAncestor, 
 			                                                                    AncestorType={x:Type Window}}}">
                 <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="{DynamicResource PlaceBid}" Width="47" Height="Auto"/>
@@ -52,16 +52,17 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"  Height="106" >
             <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
+
             <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
             <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
             <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
             <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="0,35,0,0" Grid.RowSpan="2" Width="175">
-            <Button x:Name="doneEditBtn" Command="{Binding EditProduct}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75">
+            <Button x:Name="doneEditBtn" Command="{Binding EditProduct}" CommandParameter="{Binding}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75">
                 Готово
             </Button>
-            <Button x:Name="deleteBtn">
+            <Button x:Name="deleteBtn" Command="{Binding DeleteProduct}" CommandParameter="{Binding}">
                 <Button.Background>
                     <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\delete.png" />
                 </Button.Background>
@@ -71,7 +72,7 @@
                     <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\edit.png" />
                 </Button.Background>
             </Button>
-            <Button x:Name="addFavourBtn" Height="20">
+            <Button x:Name="addFavourBtn" Height="20" Command="{Binding AddToBasket}" CommandParameter="{Binding Product}">
                 <Button.Background>
                     <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\favourite.png" />
                 </Button.Background>
@@ -79,7 +80,7 @@
         </StackPanel>
         <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="116" Width="Auto">
             <TextBox x:Name="Title" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.TITLE, Mode=TwoWay}"/>
-            <TextBox x:Name="Price" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.PRICE, Mode=TwoWay}"/>
+            <TextBox x:Name="Price" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.PRICE, Mode=TwoWay, StringFormat={}{0:C}}"/>
             <TextBox x:Name="TimeLeft" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.ENDTIME, Mode=TwoWay}"/>
             <TextBox x:Name="Bids" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.BIDS, Mode=TwoWay}"/>
             <TextBox x:Name="Type" FontSize="16" IsReadOnly="True" Text="{Binding Path = Product.TYPE_PROD, Mode=TwoWay}"/>

@@ -36,17 +36,19 @@ namespace Lab_6.Model
 
                 if (!isUserExist)
                 {
-                    //USERS newUser = db.USERS.Add(user);
-                    //IMAGES img = new IMAGES();
-                    //img.LINK = product.PRODUCT_IMAGE_LINK;
-                    //IMAGES q = db.IMAGES.Add(img);
-                    //db.SaveChanges();
-
-                    //db.PRODUCTS.Add(product);
-                    //db.SaveChanges();
-                    //product.PRODUCT_IMAGE_LINK = q.LINK;
-                    //return product;
-                    return null;
+                    try
+                    {
+                        user.USER_TYPE = "user";
+                        db.USERS.Add(user);
+                        db.SaveChanges();
+                        USERS res = db.USERS.Where(u => u.LOGIN_USER == user.LOGIN_USER).Single();
+                        UserDataWorker.CurrentUser = res;
+                        return res;
+                    }
+                    catch (Exception ex)
+                    {
+                        return null;
+                    }
                 }
                 else return null;
             }

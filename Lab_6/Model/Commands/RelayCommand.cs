@@ -31,7 +31,7 @@ namespace Lab_6
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+                this.execute(parameter);
         }
     }
 }

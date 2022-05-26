@@ -34,7 +34,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="Auto">
             <Button Height="30" Width="130" Margin="3" Content="{DynamicResource LogIn}" Command="{Binding LogInUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
-            <Button Height="30" Width="130" Margin="3" Content="{DynamicResource Register}" Command="{Binding RegisterUser}"/>
+            <Button Height="30" Width="130" Margin="3" Content="{DynamicResource Register}" Command="{Binding RegisterUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
         </StackPanel>
         <Button Height="20" Margin="3" Content="{DynamicResource EnterAsGuest}" Command="{Binding LogInGuest}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom"/>
     </Grid>

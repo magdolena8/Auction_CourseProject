@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
+        
+        xmlns:local="clr-namespace:Lab_6.View.Converters"
+        
         xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
         Title="MainWindow" Width="860"  Height="580" 
         WindowState="Maximized" MinWidth="880" MinHeight ="580"
@@ -27,6 +30,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
+        <!--<local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />-->
     </Window.Resources>
 
     <Grid ShowGridLines="False" Background="#FF497069">
@@ -40,11 +45,12 @@
         </Grid.ColumnDefinitions>
         <WrapPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="250"  Margin="0,5,0,0" >
             <Button Command="{Binding UpdateData}">Обновить</Button>
+            <Button Command="{Binding SearchProducts}" CommandParameter="{Binding Text, ElementName=SerchText}">Поиск</Button>
             <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
                 <Label>
                     Поиск
                 </Label>
-                <TextBox Text="" MinWidth = "200" Width="184"/>
+                <TextBox x:Name="SerchText" Text="" MinWidth = "200" Width="184"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label>
@@ -80,9 +86,23 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Gainsboro" BorderThickness="2">
-                                    <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200" Background="#238C47" >
-                                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
+                                <Border BorderBrush="LightSeaGreen" BorderThickness="3" CornerRadius="6">
+                                    <!--<Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="100"/>
+                                        </Style>
+                                    </Border.Style>-->
+                                    <StackPanel Orientation="Horizontal" Width="500" Height="200" Background="#238C47">
+                                        <!--<StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
+                                                        <Setter Property="Background" Value="LightGreen"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>-->
+                                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
 
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                             <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
@@ -93,8 +113,8 @@
                                         </StackPanel>
                                         <StackPanel VerticalAlignment="Center" Margin="40">
                                             <TextBlock FontSize="16" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=PRICE}" HorizontalAlignment="Center" />
-                                            <TextBlock FontSize="16" Text="{Binding Path=ENDTIME}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=PRICE , StringFormat={}{0:C}}" HorizontalAlignment="Center" />
+                                            <TextBlock FontSize="16" Text="{Binding Path=ENDTIME, Converter={StaticResource DateTimeToTimespanConverter}}" HorizontalAlignment="Center" />
                                             <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
                                             <TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />
                                         </StackPanel>
@@ -128,19 +148,42 @@
 
 
                 <!--</Border>-->
-                
+
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Label Width="200">Отслеживаемые</Label>
                 </TabItem.Header>
+                <i:Interaction.Triggers>
+                    <!--Microsoft Interacticity-->
+                    <i:EventTrigger EventName="Activated">
+                        <i:InvokeCommandAction Command="{Binding UpdateData}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <uc:BasketList></uc:BasketList>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Label Width="200">Профиль</Label>
                 </TabItem.Header>
-                <TextBlock  HorizontalAlignment="Left" Margin="156,0,0,0" TextWrapping="Wrap" Text="{Binding User.LOGIN_USER}" VerticalAlignment="Center" Height="37" Width="236"/>
+                <DockPanel  Background="#7be5ca">
+                    <Button>Изменить информацию</Button>
+                    <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
+                        <TextBlock FontSize="16" Text="{DynamicResource Login}"/>
+                        <TextBlock FontSize="16" Text="{DynamicResource UserPassword}"/>
+                        <TextBlock FontSize="16" Text="{DynamicResource UserRights}"/>
+                        <TextBlock FontSize="16" Text="{DynamicResource ProductsCount}"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Margin="40">
+                        <TextBlock FontSize="16" Text="{Binding Path=User.ID_USER}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=User.PASSWORD_USER}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=User.USER_TYPE}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </DockPanel>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
