@@ -25,7 +25,7 @@
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="-1"/>
     </Style>-->
-    
+
     <Style TargetType="Grid">
         <Setter Property="Background" Value="#4f7a6a"/>
     </Style>
@@ -35,21 +35,39 @@
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="CornerRadius" Value="2"/>
     </Style>
+
+    <Style x:Key="BidIndicator" TargetType="StackPanel">
+        <Setter Property="Background" Value="Yellow"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
+                <Setter Property="Background" Value="#0DB200"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="False">
+                <Setter Property="Background" Value="#E6002E"/>
+                <Setter Property="TextElement.Foreground" Value="#19FFD1"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="{x:Null}">
+                <Setter Property="Background" Value="#222222"/>
+                <Setter Property="TextElement.Foreground" Value="White"/>
+                <Setter Property="TextBlock.Foreground" Value="White"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
     <Style x:Key="MoreWndStyle" TargetType="Grid">
         <Setter Property="Background" Value="#CDEFCF"/>
     </Style>
-    <Style x:Key="SettingsBackground" TargetType="StackPanel">
-        <Setter Property="Background" Value="{DynamicResource MainBackgroundColor}"/>
+    <!--ХУЕТАААААА-->
+    <!--<Style x:Key="SettingsBackground" TargetType="StackPanel">
+        <Setter Property="Background" Value="{DynamicResource MainBackgroundColor}"/> 
     </Style>
     <Style x:Key="ProfileMainBackground" TargetType="DockPanel">
         <Setter Property="Background" Value="{DynamicResource MainBackgroundColor}"/>
-    </Style>
-    <!--<Style TargetType="ListBox">
-        <Setter Property="BorderThickness" Value="0"/>
     </Style>-->
-    <Color x:Key="LightTabOn">Yellow</Color>
-    <Color x:Key="LightTabOff">Red</Color>
-    <Color x:Key="MainBackgroundColor">#BEEADA</Color>
+    <!--ХУЕТАААААА-->
+
+    <SolidColorBrush x:Key="MainBackgroundColor">#BEEADA</SolidColorBrush>
 
     <!--<Style x:Key="TabsStyle" TargetType="{x:Type TabItem}">
         <Style.Triggers>

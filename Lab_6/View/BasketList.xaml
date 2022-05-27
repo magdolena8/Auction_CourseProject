@@ -20,27 +20,16 @@
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <Border BorderThickness="2" CornerRadius="5" Width="500" Height="200">
-                    <StackPanel Orientation="Horizontal" >
-                        <StackPanel.Style>
-                            <Style TargetType="StackPanel">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
-                                        <Setter Property="Background" Value="#00A369"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="False">
-                                        <Setter Property="Background" Value="#a06060"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="{x:Null}">
-                                        <Setter Property="Background" Value="#545f63"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </StackPanel.Style>
-
+                <Border Width="500" Height="200" Style="{DynamicResource ProductItem}" x:Name="ProductItem">
+                    <!--<Border.Triggers>
+                        <DataTrigger Binding="{Binding Path=isUserTopBid}" Value="True">
+                            <Setter Property="Style" TargetName="ProductItem" Value="{DynamicResource WinningBid}"/>
+                        </DataTrigger>
+                    </Border.Triggers>-->
+                    <StackPanel Orientation="Horizontal" Style="{DynamicResource BidIndicator}">
                         <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <Label HorizontalAlignment="Center" FontSize="30" FontStyle="Normal" FontFamily="Verdana">SOLD
+                            <Label HorizontalAlignment="Center" Foreground="Red" FontSize="30" FontStyle="Normal" FontFamily="Verdana" Content="{DynamicResource Sold}">
                                 <Label.Style>
                                     <Style TargetType="Label">
                                         <Style.Triggers>

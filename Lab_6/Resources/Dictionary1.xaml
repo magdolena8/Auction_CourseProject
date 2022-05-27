@@ -38,6 +38,7 @@
     <v:String x:Key="Profile">Профиль</v:String>
     <v:String x:Key="EditInformation">Изменить информацию</v:String>
     <v:String x:Key="Settings">Настройки</v:String>
+    <v:String x:Key="Sold">ПРОДАНО</v:String>
     
     
     

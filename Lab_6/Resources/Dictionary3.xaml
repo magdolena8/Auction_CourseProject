@@ -37,6 +37,8 @@
     <v:String x:Key="Profile">Profile</v:String>
     <v:String x:Key="EditInformation">Edit Information</v:String>
     <v:String x:Key="Settings">Settings</v:String>
+    <v:String x:Key="Sold">SOLD</v:String>
+
 
 
 
