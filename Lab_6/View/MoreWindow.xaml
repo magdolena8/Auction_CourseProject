@@ -25,7 +25,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Background="#63DD8D">
+    <Grid Style="{DynamicResource MoreWndStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"/>
             <RowDefinition Height="213*"/>
@@ -38,7 +38,7 @@
             <ColumnDefinition Width="177*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="Image"  Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = Product.PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
+        <Image x:Name="Image" Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = Product.PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
         <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Command="{Binding EditImage}" Visibility="Collapsed" Grid.Row="2" Width="Auto" HorizontalAlignment="Center" />
 
         <StackPanel x:Name="BidPanel" Orientation="Horizontal" Width="Auto" Height="42" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="0,213,0,0" >

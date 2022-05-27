@@ -22,7 +22,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Background="#63DD8D">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"/>
             <RowDefinition Height="213*"/>

@@ -186,29 +186,20 @@ namespace Lab_6.ViewModels
                 });
             }
         }
-
-
-        public class DateTimeToTimespanConverter : IValueConverter
+        private RelayCommand _changeLanguage;
+        public RelayCommand ChangeLanguage
         {
-            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            get
             {
-                DateTime? dateTime = value as DateTime?;
-                if (dateTime != null)
+                return _changeLanguage ?? new RelayCommand(obj =>
                 {
-                    DateTime r = (DateTime)dateTime;
-                    return ((DateTime)dateTime).Subtract(DateTime.Now);
-
+                    ComboBoxItem langComboBox = obj as ComboBoxItem;
+                    string lang = langComboBox.Content.ToString();
+                    WNDManager.ChangeLanguage(lang);
                 }
-                //if (parameter != null && parameter.ToString() == "EN")
-                return ((DateTime)value).ToString("MM-dd-yyyy");
-                //return ((TimeSpan)value).ToString("dd.MM.yyyy");
+                );
             }
-
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return DependencyProperty.UnsetValue;
-            }
-        }
+        }       
 
     }
 

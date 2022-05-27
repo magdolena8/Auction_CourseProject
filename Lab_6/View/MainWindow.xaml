@@ -5,9 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        
-        xmlns:local="clr-namespace:Lab_6.View.Converters"
-        
+        xmlns:local="clr-namespace:Lab_6.View.Converters"        
         xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
         Title="MainWindow" Width="860"  Height="580" 
         WindowState="Maximized" MinWidth="880" MinHeight ="580"
@@ -20,21 +18,21 @@
     </i:Interaction.Triggers>
     <Window.Resources>
         <!--<ResourceDictionary Source="Dictionary2.xaml" />-->
-        <Style TargetType="{x:Type TabItem}">
+        <!--<Style TargetType="{x:Type TabItem}">
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="False">
-                    <Setter Property="Background" Value="Green"></Setter>
+                    <Setter Property="Background" Value="{DynamicResource LightTabOn}"></Setter>
                 </Trigger>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="Red"></Setter>
+                    <Setter Property="Background" Value="{DynamicResource LightTabOff}"></Setter>
                 </Trigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
         <local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
         <!--<local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />-->
     </Window.Resources>
 
-    <Grid ShowGridLines="False" Background="#FF497069">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="19*"/>
             <RowDefinition Height="169*"></RowDefinition>
@@ -44,37 +42,33 @@
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
         <WrapPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="250"  Margin="0,5,0,0" >
-            <Button Command="{Binding UpdateData}">Обновить</Button>
-            <Button Command="{Binding SearchProducts}" CommandParameter="{Binding Text, ElementName=SerchText}">Поиск</Button>
+            <Button Command="{Binding UpdateData}" Content="{DynamicResource Update}"/>
+            <Button Command="{Binding SearchProducts}" CommandParameter="{Binding Text, ElementName=SerchText}" Content="{DynamicResource Search}"/>
             <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
-                <Label>
-                    Поиск
-                </Label>
+                <Label Content="{DynamicResource Search}"/>
                 <TextBox x:Name="SerchText" Text="" MinWidth = "200" Width="184"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label>
-                    Сортировать по:
-                </Label>
+                <Label Content="{DynamicResource SortBy}"/>
                 <ComboBox Width="143">
-                    <TextBlock>Сначала дорогие</TextBlock>
+                    <TextBlock >Сначала дорогие</TextBlock>
                     <TextBlock>Сначала дешевые</TextBlock>
                     <TextBlock>Популярные</TextBlock>
                     <TextBlock>Сначала</TextBlock>
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
-        <TabControl TabStripPlacement="Left" Grid.Column="0" Height="Auto" Margin="0,9,0,0" Grid.ColumnSpan="2" Grid.Row="1">
-            <TabControl.Resources>
+        <TabControl TabStripPlacement="Left" Grid.Column="0" Height="Auto" Grid.ColumnSpan="2" Grid.Row="1" Padding="0" Margin="0" BorderThickness="0">
+            <!--<TabControl.Resources>
                 <Style TargetType="{x:Type Grid}">
                     <Setter Property="Background" Value="#FF497069"/>
                 </Style>
+            </TabControl.Resources>-->
 
-            </TabControl.Resources>
-
-            <TabItem>
+            <TabItem Margin="0" Padding="0">
                 <TabItem.Header>
-                    <Label Width="200">Каталог</Label>
+
+                    <Label Width="200" Content="{DynamicResource Catalog}"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <!--<uc:AdminProductsList></uc:AdminProductsList>-->
@@ -84,15 +78,22 @@
                                 <WrapPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Center"/>
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
+                        <!--<ListBox.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="ListBoxItem.Background" Value="LightSteelBlue"/>
+                                <Setter Property="ListBoxItem.Margin" Value="5"/>
+                                <Setter Property="ListBoxItem.Padding" Value="5"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>-->
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="LightSeaGreen" BorderThickness="3" CornerRadius="6">
+                                <Border Style="{DynamicResource ProductItem}">
                                     <!--<Border.Style>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="100"/>
                                         </Style>
                                     </Border.Style>-->
-                                    <StackPanel Orientation="Horizontal" Width="500" Height="200" Background="#238C47">
+                                    <StackPanel Orientation="Horizontal" Width="500" Height="200">
                                         <!--<StackPanel.Style>
                                             <Style TargetType="StackPanel">
                                                 <Style.Triggers>
@@ -105,7 +106,7 @@
                                         <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
 
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                            <TextBlock FontSize="16" Text="{DynamicResource Name}"/>
+                                            <TextBlock FontSize="16" Text="{DynamicResource Name}" Style="{DynamicResource TextBlockStyle}"/>
                                             <TextBlock FontSize="16" Text="{DynamicResource Price}"/>
                                             <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
                                             <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
@@ -137,22 +138,19 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <Label Width="200">Мои товары</Label>
+                    <Label Width="200" Content="{DynamicResource MyGoods}"/>
                 </TabItem.Header>
                 <DockPanel>
-                    <Button Background="#FFDAAB9D" Height="50" Width="400" DockPanel.Dock="Top" Content="{DynamicResource AddMenuButton}" Command="{Binding OpnenAddNewProductWND}"/>
+                    <Button Height="40" Width="Auto" DockPanel.Dock="Top" Content="{DynamicResource AddMenuButton}" Command="{Binding OpnenAddNewProductWND}"/>
                     <!--<uc:AdminProductsList></uc:AdminProductsList>-->
                     <uc:AdminProductsList></uc:AdminProductsList>
                     <!--<Border Height="Auto" Width="Auto" VerticalAlignment="Top" BorderBrush="Gainsboro" BorderThickness="1" Background="Aqua">-->
                 </DockPanel>
-
-
-                <!--</Border>-->
-
             </TabItem>
+            
             <TabItem>
                 <TabItem.Header>
-                    <Label Width="200">Отслеживаемые</Label>
+                    <Label Width="200" Content="{DynamicResource Tracked}"/>
                 </TabItem.Header>
                 <i:Interaction.Triggers>
                     <!--Microsoft Interacticity-->
@@ -164,10 +162,10 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <Label Width="200">Профиль</Label>
+                    <Label Width="200" Content="{DynamicResource Profile}"/>
                 </TabItem.Header>
-                <DockPanel  Background="#7be5ca">
-                    <Button>Изменить информацию</Button>
+                <DockPanel Style="{DynamicResource ProfileMainBackground}">
+                    <Button Content="{DynamicResource EditInformation}"/>
                     <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
@@ -187,8 +185,23 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <Label Width="200">Настройки</Label>
+                    <Label Width="200" Content="{DynamicResource Settings}"/>
                 </TabItem.Header>
+                <StackPanel Style="{DynamicResource SettingsBackground}">
+                    <ComboBox x:Name="langComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
+                        <ComboBoxItem>
+                            English
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Русский
+                        </ComboBoxItem>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding ChangeLanguage}" CommandParameter="{Binding ElementName=langComboBox, Path=SelectedValue}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

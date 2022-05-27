@@ -76,11 +76,9 @@ namespace Lab_6.Model
             {
                 bool isProductExist = db.PRODUCTS.Any(el => el.ID_PRODUCT == product.ID_PRODUCT);   // Бесполезно
                 if (!isProductExist)
-                {
-                    ///////Добавить owner'а////////
-                    
+                {                    
                     IMAGES img = new IMAGES();
-                    img.LINK = product.PRODUCT_IMAGE_LINK; /////////////////////////////////
+                    img.LINK = product.PRODUCT_IMAGE_LINK; ////////////////////////////////??????
                     IMAGES q = db.IMAGES.Add(img);
                     db.SaveChanges();
 

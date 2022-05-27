@@ -32,5 +32,31 @@ namespace Lab_6
             Application.Current.MainWindow = mainWND;
             mainWND.Show();
         }
+        public static void ChangeLanguage(string lang = "eng")
+        {
+            //Application.ResourceAssembly
+            //Application.Current.Resources.MergedDictionaries.Clear();
+            ResourceDictionary langENG = Application.LoadComponent(new Uri(@"Resources/Dictionary3.xaml", UriKind.Relative)) as ResourceDictionary;
+            ResourceDictionary langRU = Application.LoadComponent(new Uri(@"Resources/Dictionary1.xaml", UriKind.Relative)) as ResourceDictionary;
+            switch (lang)
+            {
+                case "English":
+                    {
+                        Application.Current.Resources.MergedDictionaries.Remove(langRU);
+                        Application.Current.Resources.MergedDictionaries.Add(langENG);
+                        break;
+                    }
+                case "Русский":
+                    {
+                        Application.Current.Resources.MergedDictionaries.Remove(langENG);
+                        Application.Current.Resources.MergedDictionaries.Add(langRU);
+                        break;
+                    }
+                    
+            }
+            //Application.Current.Resources.MergedDictionaries.Remove(langRU);
+            //Application.Current.Resources.MergedDictionaries.Add(langENG);
+
+        }
     }
 }

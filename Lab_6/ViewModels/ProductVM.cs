@@ -244,7 +244,6 @@ namespace Lab_6.ViewModels
 
                 });
             }
-
         }
 
 

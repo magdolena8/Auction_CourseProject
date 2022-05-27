@@ -11,7 +11,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage">
 
-    <Grid ShowGridLines="False" Background="#FF497069">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="49*"/>
             <RowDefinition Height="401*"></RowDefinition>
@@ -41,9 +41,9 @@
         </WrapPanel>
         <TabControl TabStripPlacement="Left" Grid.Column="0" Height="Auto" Margin="0,9,0,0" Grid.ColumnSpan="2" Grid.Row="1">
             <TabControl.Resources>
-                <Style TargetType="{x:Type Grid}">
+                <!--<Style TargetType="{x:Type Grid}">
                     <Setter Property="Background" Value="#FF497069"/>
-                </Style>
+                </Style>-->
 
             </TabControl.Resources>
 
@@ -60,8 +60,8 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Gainsboro" BorderThickness="2">
-                                    <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200" Background="#238C47" >
+                                <Border BorderThickness="2">
+                                    <StackPanel Margin="5" Orientation="Horizontal" Width="500" Height="200">
                                         <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
 
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">

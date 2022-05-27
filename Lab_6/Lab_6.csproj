@@ -152,6 +152,14 @@
     </Compile>
     <Compile Include="ViewModels\DataManageVM.cs" />
     <Compile Include="WNDManager.cs" />
+    <Page Include="Resources\Dictionary3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\Light.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddNewProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

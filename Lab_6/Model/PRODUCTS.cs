@@ -87,8 +87,7 @@ namespace Lab_6.Model
         {
             set
             {
-                _imageLink = DataWorker.SetImageLinkToProduct(this, value); //value is srting
-
+                _imageLink = DataWorker.SetImageLinkToProduct(this, value) ?? value; //value is srting
             }
             get
             {

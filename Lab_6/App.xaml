@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Resources\Dictionary1.xaml"/>
                 <ResourceDictionary Source="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Resources\Dictionary2.xaml"/>
+                <ResourceDictionary Source="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Resources\Themes\Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

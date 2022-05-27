@@ -13,7 +13,7 @@
                Command="{Binding LogInUser}"
                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
     </Window.InputBindings>
-    <Grid Background="#63DD8D">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="123*"/>
