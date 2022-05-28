@@ -54,6 +54,9 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="TytleStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
 
     <Style x:Key="MoreWndStyle" TargetType="Grid">
         <Setter Property="Background" Value="#CDEFCF"/>
@@ -104,7 +107,25 @@
     </Style>
 
 
-
+    <Style TargetType="Button" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="{TemplateBinding Border.CornerRadius}" 
+                        Background="White" BorderBrush="#ccc">
+                        <ContentPresenter x:Name="contentPresenter" 
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                      Content="{TemplateBinding Content}" 
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      Margin="{TemplateBinding Padding}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
 
 
 

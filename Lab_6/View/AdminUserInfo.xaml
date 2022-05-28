@@ -1,0 +1,71 @@
+﻿<Window x:Class="Lab_6.AdminUserInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_6"
+        mc:Ignorable="d"
+        Title="AdminUserInfo"
+        Height="450" Width="800"
+        MinHeight="450" MinWidth="700">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Margin" Value="0 0 10 0"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Style="{DynamicResource MoreWndStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="213*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="16*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="Image" Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = User.USER_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
+        <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Command="{Binding EditImage}" Visibility="Collapsed" Grid.Row="2" Width="Auto" HorizontalAlignment="Center" />
+
+        
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+            <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource UserName}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource UserRights}"/>
+            <TextBlock FontSize="16" Text="{DynamicResource ProductsCount}"/>
+            <!--<TextBlock FontSize="16" Text="{DynamicResource UserRights}"/>-->
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="Auto" Width="Auto" TextBlock.TextAlignment="Center">
+            <TextBox x:Name="IdUser" FontSize="16" IsReadOnly="True" Text="{Binding Path = User.ID_USER, Mode=OneWay}"/>
+            <TextBox x:Name="UserLogin" FontSize="16" IsReadOnly="True" Text="{Binding Path = User.LOGIN_USER, Mode=OneWay}"/>
+            <TextBox x:Name="RightsUser" FontSize="16" IsReadOnly="True" Text="{Binding Path = User.USER_TYPE, Mode=TwoWay}"/>
+            <TextBox x:Name="IDUser" FontSize="16" IsReadOnly="True" Text="{Binding Path = GOODS_COUNT, Mode=OneWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="0,35,0,0" Grid.RowSpan="2" Width="175">
+            <Button x:Name="doneEditBtn" Command="{Binding EditProduct}" CommandParameter="{Binding}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75">
+                Готово
+            </Button>
+
+            <Button x:Name="editBtn" Click="editBtnClick">
+                <Button.Background>
+                    <ImageBrush ImageSource="D:\Stud\OOP\4_sem\Lab_6\Lab_6\Media\edit.png" />
+                </Button.Background>
+            </Button>
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

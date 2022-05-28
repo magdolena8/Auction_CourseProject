@@ -7,6 +7,7 @@ using Lab_6.ViewModels;
 using Lab_6.Model;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Lab_6
 {
@@ -14,7 +15,6 @@ namespace Lab_6
     {
         public static void openUserMainWindow(AutentificationWindow autWnd, USERS user)
         {
-            Console.WriteLine("Opened window for common user           --------------          " + user.LOGIN_USER.ToString());
             MainWindow mainWND = new MainWindow();
             mainWND.DataContext = new DataManageVM(user);
             autWnd.Close();
@@ -25,9 +25,23 @@ namespace Lab_6
 
         public static void openAdminMainWindow(AutentificationWindow autWnd, USERS user)
         {
-            Console.WriteLine("Opened window for common user" + user.LOGIN_USER.ToString());
             AdminMainWindow mainWND = new AdminMainWindow();
-            mainWND.DataContext = new AdminDataManageVM(user);
+            mainWND.DataContext = new AdminDataManageVM(user); 
+            autWnd.Close();
+            Application.Current.MainWindow = mainWND;
+            mainWND.Show();
+        }
+        public static void openGuestMainWindow(AutentificationWindow autWnd)
+        {
+            MainWindow mainWND = new MainWindow();
+            mainWND.DataContext = new DataManageVM();
+            TabItem UserProductsTab = (TabItem)mainWND.FindName("UserProductsTab");
+            UserProductsTab.Visibility = Visibility.Collapsed;
+            TabItem TrackedTab = (TabItem)mainWND.FindName("TrackedTab");
+            TrackedTab.Visibility= Visibility.Collapsed;
+            TabItem ProfileTab = (TabItem)mainWND.FindName("ProfileTab");
+            ProfileTab.Visibility= Visibility.Collapsed;
+
             autWnd.Close();
             Application.Current.MainWindow = mainWND;
             mainWND.Show();
@@ -52,11 +66,7 @@ namespace Lab_6
                         Application.Current.Resources.MergedDictionaries.Add(langRU);
                         break;
                     }
-                    
             }
-            //Application.Current.Resources.MergedDictionaries.Remove(langRU);
-            //Application.Current.Resources.MergedDictionaries.Add(langENG);
-
         }
     }
 }

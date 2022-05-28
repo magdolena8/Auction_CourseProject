@@ -38,12 +38,19 @@
     <v:String x:Key="EditInformation">Edit Information</v:String>
     <v:String x:Key="Settings">Settings</v:String>
     <v:String x:Key="Sold">SOLD</v:String>
+    <v:String x:Key="UserManagement">Users management</v:String>
+
+    <v:String x:Key="BestMatch">Best match</v:String>
+    <v:String x:Key="TimeEendingSoonest">Time ending first</v:String>
+    <v:String x:Key="PriceLowestFirst">Price lowest</v:String>
+    <v:String x:Key="PriceHighestFirst">Price highest</v:String>
 
 
 
 
     <BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />
     <BitmapImage x:Key="StandartAvatar" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_avatar.png" />
+    <BitmapImage x:Key="GlobeImg" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/globe_img.png" />
     <ControlTemplate x:Key="validationFailed">
         <StackPanel Orientation="Horizontal">
             <Border BorderBrush="Violet" BorderThickness="2">

@@ -23,6 +23,7 @@
     <v:String x:Key="Bid">Cтавка:</v:String>
     <v:String x:Key="UserName">Логин</v:String>
     <v:String x:Key="UserPassword">Пароль:</v:String>
+    <v:String x:Key="UserPasswordAgain">Пароль еще раз</v:String>
     <v:String x:Key="UserRights">Права:</v:String>
     <v:String x:Key="LogIn">Войти</v:String>
     <v:String x:Key="Register">Зарегистрироваться</v:String>
@@ -31,7 +32,7 @@
     
     <v:String x:Key="Update">Обновить</v:String>
     <v:String x:Key="Search">Поиск</v:String>
-    <v:String x:Key="SortBy">Сортировать по</v:String>
+    <v:String x:Key="SortBy">Сортировка</v:String>
     <v:String x:Key="Catalog">Каталог</v:String>
     <v:String x:Key="MyGoods">Мои товары</v:String>
     <v:String x:Key="Tracked">Отслеживаемые</v:String>
@@ -39,11 +40,19 @@
     <v:String x:Key="EditInformation">Изменить информацию</v:String>
     <v:String x:Key="Settings">Настройки</v:String>
     <v:String x:Key="Sold">ПРОДАНО</v:String>
+    <v:String x:Key="UserManagement">Управление пользователями</v:String>
+    
+    <v:String x:Key="BestMatch">Наилучшее соответствие</v:String>
+    <v:String x:Key="TimeEendingSoonest">Завершающиеся первыми</v:String>
+    <v:String x:Key="PriceLowestFirst">Сначала дешевые</v:String>
+    <v:String x:Key="PriceHighestFirst">Сначала дорогие</v:String>
+    
     
     
     
     <BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />
     <BitmapImage x:Key="StandartAvatar" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_avatar.png" />
+    <BitmapImage x:Key="GlobeImg" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/globe_img.png" />
     <ControlTemplate x:Key="validationFailed">
         <StackPanel Orientation="Horizontal">
             <Border BorderBrush="Violet" BorderThickness="2">

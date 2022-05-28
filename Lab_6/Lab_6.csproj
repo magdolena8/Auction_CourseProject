@@ -95,6 +95,9 @@
     <Compile Include="View\AdminMainWindow.xaml.cs">
       <DependentUpon>AdminMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AdminUserInfo.xaml.cs">
+      <DependentUpon>AdminUserInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AutentificationWindow.xaml.cs">
       <DependentUpon>AutentificationWindow.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminUserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,6 +246,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AUCTION_DB_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Resource Include="Media\Fonts\FuturaBoldfont.ttf" />
     <None Include="Model\AUCTION_DB_Model.edmx.diagram">
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>
     </None>
@@ -268,6 +276,19 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Media\56c49e7efe7ffb5a9411b6b06092efa8.png" />
+    <Resource Include="Media\asscreed.jpg" />
+    <Resource Include="Media\car.jpg" />
+    <Resource Include="Media\delete.png" />
+    <Resource Include="Media\download.jpg" />
+    <Resource Include="Media\edit.png" />
+    <Resource Include="Media\favourite.png" />
+    <Resource Include="Media\free-icon-font-cross-3917759.png" />
+    <Resource Include="Media\free-icon-font-search-3917754.png" />
+    <Resource Include="Media\no_avatar.png" />
+    <Resource Include="Media\no_image.png" />
+    <Resource Include="Media\pervaia.jpg" />
+    <Resource Include="Media\sick.jpg" />
     <Content Include="Model\AUCTION_DB_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AUCTION_DB_Model.edmx</DependentUpon>

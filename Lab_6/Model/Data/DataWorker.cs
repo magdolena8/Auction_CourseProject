@@ -21,12 +21,23 @@ namespace Lab_6.Model
         {
             using (AUCTION_DBEntities db = new AUCTION_DBEntities())
             {
-                var selector = (from p in db.PRODUCTS
-                                where p.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
-                                where p.ENDTIME >= DateTime.Now
-                                select p) ;
-                ObservableCollection<PRODUCTS> productsCollection = new ObservableCollection<PRODUCTS>(selector);
-                return productsCollection;
+                if (UserDataWorker.CurrentUser == null)
+                {
+                    var guestProducts = (from p in db.PRODUCTS
+                                         where p.ENDTIME >= DateTime.Now
+                                         select p);
+                    ObservableCollection<PRODUCTS> gurstProductsCollection = new ObservableCollection<PRODUCTS>(guestProducts);
+                    return gurstProductsCollection;
+                }
+                else
+                {
+                    var selector = (from p in db.PRODUCTS
+                                    where p.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
+                                    where p.ENDTIME >= DateTime.Now
+                                    select p);
+                    ObservableCollection<PRODUCTS> productsCollection = new ObservableCollection<PRODUCTS>(selector);
+                    return productsCollection;
+                }
             }
         }
         public static ObservableCollection<USERS> GetAllUsers()
@@ -170,13 +181,25 @@ namespace Lab_6.Model
                 if (!string.IsNullOrEmpty(str))
                 {
                     Regex qwe = new Regex(str);
-                    var result = from i in db.PRODUCTS
-                                 where i.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
-                                 where (i.TITLE.Contains(str) || i.PROD_DESCRIPTION.Contains(str) || i.TYPE_PROD.Contains(str))
-                                 select i;
+                    try
+                    {
+                        var userResult = from i in db.PRODUCTS
+                                         where i.OWNER_ID != UserDataWorker.CurrentUser.ID_USER
+                                         where (i.TITLE.Contains(str) || i.PROD_DESCRIPTION.Contains(str) || i.TYPE_PROD.Contains(str))
+                                         select i;
 
-                    ObservableCollection<PRODUCTS> x = new ObservableCollection<PRODUCTS>(result);
-                    return x;
+                        ObservableCollection<PRODUCTS> x = new ObservableCollection<PRODUCTS>(userResult);
+                        return x;
+                    }
+                    catch (Exception ex)
+                    {
+                        var guestResult = from i in db.PRODUCTS
+                                         where (i.TITLE.Contains(str) || i.PROD_DESCRIPTION.Contains(str) || i.TYPE_PROD.Contains(str))
+                                         select i;
+
+                        ObservableCollection<PRODUCTS> x = new ObservableCollection<PRODUCTS>(guestResult);
+                        return x;
+                    }
                 }
                 else return GetAllProducts();
             }

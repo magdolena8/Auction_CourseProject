@@ -17,19 +17,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
-        <!--<ResourceDictionary Source="Dictionary2.xaml" />-->
-        <!--<Style TargetType="{x:Type TabItem}">
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="False">
-                    <Setter Property="Background" Value="{DynamicResource LightTabOn}"></Setter>
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource LightTabOff}"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>-->
         <local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
-        <!--<local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />-->
     </Window.Resources>
 
     <Grid ShowGridLines="False">
@@ -51,10 +39,10 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="{DynamicResource SortBy}"/>
                 <ComboBox Width="143">
-                    <TextBlock >Сначала дорогие</TextBlock>
-                    <TextBlock>Сначала дешевые</TextBlock>
-                    <TextBlock>Популярные</TextBlock>
-                    <TextBlock>Сначала</TextBlock>
+                    <TextBlock Text="{DynamicResource BestMatch}"/>
+                    <TextBlock Text="{DynamicResource TimeEendingSoonest}"/>
+                    <TextBlock Text="{DynamicResource PriceLowestFirst}"/>
+                    <TextBlock Text="{DynamicResource PriceHighestFirst}"/>
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
@@ -93,7 +81,7 @@
                                             <Setter Property="CornerRadius" Value="100"/>
                                         </Style>
                                     </Border.Style>-->
-                                    <StackPanel Orientation="Horizontal" Width="500" Height="200">
+                                    <StackPanel Orientation="Vertical" Width="300" Height="370">
                                         <!--<StackPanel.Style>
                                             <Style TargetType="StackPanel">
                                                 <Style.Triggers>
@@ -103,33 +91,39 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </StackPanel.Style>-->
-                                        <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
+                                        <Border Width="Auto" Height="250" Margin="5" ClipToBounds="True">
+                                            <Image Stretch="UniformToFill" Width="Auto" Height="250" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Path = PRODUCT_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}" />
+                                        </Border>
                                         <StackPanel Orientation="Vertical">
-                                            <TextBlock FontSize="16" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" />
-                                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                                <!--<TextBlock FontSize="16" Text="{DynamicResource Name}" Style="{DynamicResource TextBlockStyle}"/>-->
-                                                <!--<TextBlock FontSize="16" Text="{DynamicResource Price}"/>-->
-                                                <TextBlock FontSize="16" Text="{DynamicResource TimeLeft}"/>
-                                                <TextBlock FontSize="16" Text="{DynamicResource Bids}"/>
-                                                <TextBlock FontSize="16" Text="{DynamicResource Type}"/>
+                                            <TextBlock FontSize="22" FontFamily="Corbel, Baskerville,Georgia" Text="{Binding Path=TITLE}" HorizontalAlignment="Center" Style="{DynamicResource TytleStyle}"/>
+                                            <TextBlock FontSize="16" Text="{Binding Path=PRICE , StringFormat={}{0:C}}" HorizontalAlignment="Center" />
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                    <!--<TextBlock FontSize="16" Text="{DynamicResource Name}" Style="{DynamicResource TextBlockStyle}"/>-->
+                                                    <!--<TextBlock FontSize="16" Text="{DynamicResource Price}"/>-->
+                                                    <TextBlock FontFamily="Georgia" FontSize="16" Text="{DynamicResource TimeLeft}"/>
+                                                    <TextBlock  FontSize="16" Text="{DynamicResource Bids}"/>
+                                                    <!--<TextBlock FontSize="16" Text="{DynamicResource Type}"/>-->
+                                                </StackPanel>
+                                                <StackPanel VerticalAlignment="Center" Margin="10">
+                                                    <TextBlock FontSize="16" Text="{Binding Path=ENDTIME, Converter={StaticResource DateTimeToTimespanConverter}}" HorizontalAlignment="Center" />
+                                                    <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
+                                                    <!--<TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />-->
+                                                </StackPanel>
+
+                                                <!--It Works !-->
                                             </StackPanel>
-                                            <StackPanel VerticalAlignment="Center" Margin="40">
-                                                <TextBlock FontSize="16" Text="{Binding Path=PRICE , StringFormat={}{0:C}}" HorizontalAlignment="Center" />
-                                                <TextBlock FontSize="16" Text="{Binding Path=ENDTIME, Converter={StaticResource DateTimeToTimespanConverter}}" HorizontalAlignment="Center" />
-                                                <TextBlock FontSize="16" Text="{Binding Path=BIDS}" HorizontalAlignment="Center" />
-                                                <TextBlock FontSize="16" Text="{Binding Path=TYPE_PROD}" HorizontalAlignment="Center" />
-                                            </StackPanel>
-                                            <!--It Works !-->
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
-                                                    <i:InvokeCommandAction Command="{Binding RelativeSource=
+                                        </StackPanel>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDown">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource=
 			                                                                    {RelativeSource FindAncestor, 
 			                                                                    AncestorType={x:Type Window}}, 
 			                                                                    Path = DataContext.OpenProductInfoWnd}"
                                                                    CommandParameter="{Binding}"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </StackPanel>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -137,7 +131,7 @@
                     </ListBox>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="UserProductsTab">
                 <TabItem.Header>
                     <Label Width="200" Content="{DynamicResource MyGoods}"/>
                 </TabItem.Header>
@@ -149,7 +143,7 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem>
+            <TabItem x:Name="TrackedTab">
                 <TabItem.Header>
                     <Label Width="200" Content="{DynamicResource Tracked}"/>
                 </TabItem.Header>
@@ -161,12 +155,12 @@
                 </i:Interaction.Triggers>
                 <uc:BasketList></uc:BasketList>
             </TabItem>
-            <TabItem>
+            <TabItem x:Name="ProfileTab">
                 <TabItem.Header>
                     <Label Width="200" Content="{DynamicResource Profile}"/>
                 </TabItem.Header>
                 <DockPanel Background="{DynamicResource MainBackgroundColor}">
-                    <Button Content="{DynamicResource EditInformation}" DockPanel.Dock="Top"/>
+                    <Button Content="{DynamicResource EditInformation}" Height="40" FontSize="25" DockPanel.Dock="Top"/>
                     <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
@@ -180,7 +174,7 @@
                         <TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />
                         <TextBlock FontSize="16" Text="{Binding Path=User.PASSWORD_USER}" HorizontalAlignment="Center" />
                         <TextBlock FontSize="16" Text="{Binding Path=User.USER_TYPE}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />
+                        <!--<TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />-->
                     </StackPanel>
                 </DockPanel>
             </TabItem>

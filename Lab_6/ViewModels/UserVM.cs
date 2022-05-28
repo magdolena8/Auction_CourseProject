@@ -8,14 +8,20 @@ using System.Windows.Controls;
 using Lab_6.Model;
 using Microsoft.Win32;
 using System.Windows;
-
-
+using System.Windows.Media;
 
 namespace Lab_6.ViewModels
 {
     public class UserVM : INotifyPropertyChanged
     {
         private USERS _user;
+        public int GOODS_COUNT
+        {
+            get
+            {
+                return UserDataWorker.GetUserGoodsCount(this.User);
+            }
+        }
         public USERS User
         {
             get
@@ -63,7 +69,7 @@ namespace Lab_6.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Error LogIn or Password");
+                        MessageBox.Show("Неверный Логин или Пароль");
                     }
                 });
             }
@@ -76,34 +82,37 @@ namespace Lab_6.ViewModels
                 return _registerUser ?? new RelayCommand(obj =>
                 {
                     AutentificationWindow autWnd = obj as AutentificationWindow;
-                    USERS registrationResult = UserDataWorker.RegisterUser(this.User);
-                    if (registrationResult != null)
+                    TextBox passBox1 = (TextBox)autWnd.FindName("PasswordTextBox");
+                    TextBox passBox2 = (TextBox)autWnd.FindName("PasswordAgainTextBox");
+                    if ((passBox1.Text == passBox2.Text) && passBox1.Text != "")
                     {
-                        WNDManager.openUserMainWindow(autWnd, registrationResult);
+
+                        USERS registrationResult = UserDataWorker.RegisterUser(this.User);
+                        if (registrationResult != null)
+                        {
+                            WNDManager.openUserMainWindow(autWnd, registrationResult);
+                        }
                     }
-                    else MessageBox.Show("Error LogIn or Password");
+                    else MessageBox.Show("Неверный Логин или Пароль");
+                    passBox2.Background = Brushes.DarkCyan;
                 });
             }
         }
 
-        //private RelayCommand _registerUser;
-        //public RelayCommand RegisterUser
-        //{
-        //    get
-        //    {
-        //        return _registerUser ?? new RelayCommand(obj =>
-        //        {
-        //            USERS user = obj as USERS;
-        //            user = UserDataWorker.LogInUser(user);
-        //            if (user != null)
-        //            {
-        //                MainWindow mainWnd = new MainWindow();
+        private RelayCommand _loginGuest;
+        public RelayCommand LoginGuest
+        {
+            get
+            {
+                return _loginGuest ?? new RelayCommand(obj =>
+                {
+                    AutentificationWindow autWnd = obj as AutentificationWindow;
+                    WNDManager.openGuestMainWindow(autWnd);
+                    return;
+                });
+            }
 
-        //            }
-        //        });
-        //    }
-
-        //}
+        }
 
 
 

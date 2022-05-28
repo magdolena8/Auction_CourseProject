@@ -34,7 +34,7 @@ namespace Lab_6.ViewModels
             get { return _allProducts; }
             set
             {
-                
+
                 _allProducts = value;
                 NotifyPropertyChanged("AllProducts");
             }
@@ -78,8 +78,11 @@ namespace Lab_6.ViewModels
         {
             User = user;
             AllProducts = DataWorker.GetAllProducts();
-            UserProducts = DataWorker.GetUserProducts(user);
-            UserBasket =  DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
+        }
+        public DataManageVM()
+        {
+            User = null;
+            AllProducts = DataWorker.GetAllProducts();
         }
 
 
@@ -126,7 +129,12 @@ namespace Lab_6.ViewModels
         private void OpenNewProductInfoWNDMethod(PRODUCTS product)
         {
             MoreWindow newMoreInfoWindow = new MoreWindow();
-            if((UserDataWorker.CurrentUser.USER_TYPE!="admin") && (product.OWNER_ID != UserDataWorker.CurrentUser.ID_USER))
+            if (UserDataWorker.CurrentUser == null)
+            {
+                MessageBox.Show("Требуется регистрация или вход");
+                return;
+            }
+            if ((UserDataWorker.CurrentUser.USER_TYPE != "admin") && (product.OWNER_ID != UserDataWorker.CurrentUser.ID_USER))
             {
                 Button deleteButton = (Button)newMoreInfoWindow.FindName("deleteBtn");
                 deleteButton.Visibility = Visibility.Collapsed;
@@ -140,7 +148,7 @@ namespace Lab_6.ViewModels
                 //Button placePidBtn = (Button)newMoreInfoWindow.FindName("placePidBtn");
                 //placePidBtn.Visibility = Visibility.Collapsed;
                 StackPanel BidPanel = (StackPanel)newMoreInfoWindow.FindName("BidPanel");
-                BidPanel.Visibility = Visibility.Collapsed;   
+                BidPanel.Visibility = Visibility.Collapsed;
             }
             SetCentrePositionAndOpenWnd(newMoreInfoWindow);
             newMoreInfoWindow.DataContext = new ProductVM(product);
@@ -163,10 +171,13 @@ namespace Lab_6.ViewModels
             {
                 return _updateData ?? new RelayCommand(obj =>
                 {
-                    //obj = obj as PRODUCTS;
+                    if (UserDataWorker.CurrentUser != null)
+                    {
+                        UserBasket = DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
+                        UserProducts = DataWorker.GetUserProducts(UserDataWorker.CurrentUser);
+                    }
                     AllProducts = DataWorker.GetAllProducts();
-                    UserBasket = DataWorker.GetUserBasket(UserDataWorker.CurrentUser);
-                    UserProducts = DataWorker.GetUserProducts(UserDataWorker.CurrentUser);
+
                 }
                 );
             }
@@ -199,7 +210,7 @@ namespace Lab_6.ViewModels
                 }
                 );
             }
-        }       
+        }
 
     }
 

@@ -45,15 +45,15 @@
 
                             </StackPanel>
                             <!--It Works !-->
-                            <!--<i:Interaction.Triggers>
+                            <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding RelativeSource=
 			                                                                    {RelativeSource FindAncestor, 
 			                                                                    AncestorType={x:Type Window}}, 
-			                                                                    Path = DataContext.OpenProductInfoWnd}"
+			                                                                    Path = DataContext.OpenUserInfoWnd}"
                                                                    CommandParameter="{Binding}"/>
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
+                            </i:Interaction.Triggers>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

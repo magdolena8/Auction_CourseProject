@@ -15,27 +15,28 @@
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="123*"/>
-            <RowDefinition Height="244*"/>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="201*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="234*"/>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="243*"/>
+            <ColumnDefinition Width="62*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2"  Grid.Row="1">
+        <StackPanel Orientation="Vertical" Grid.RowSpan="3" Margin="0,14,2,0" Grid.Column="1">
             <TextBlock FontSize="16" Text="{DynamicResource UserName}"/>
             <TextBox x:Name="LoginTextBox" Text="{Binding User.LOGIN_USER, Mode=TwoWay}"></TextBox>
             <TextBlock FontSize="16" Text="{DynamicResource UserPassword}"/>
             <TextBox x:Name="PasswordTextBox" Text="{Binding User.PASSWORD_USER, Mode=TwoWay}"></TextBox>
+            <!--<TextBlock FontSize="16" Text="{DynamicResource UserPasswordAgain}"/>
+            <TextBox x:Name="PasswordAgainTextBox"></TextBox>-->
         </StackPanel>
-        <StackPanel Orientation="Vertical"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="Auto">
-            <Button Height="30" Width="130" Margin="3" Content="{DynamicResource LogIn}" Command="{Binding LogInUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="Auto">
+            <Button  Height="30" Width="130" Margin="3" Content="{DynamicResource LogIn}" Command="{Binding LogInUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
             <Button Height="30" Width="130" Margin="3" Content="{DynamicResource Register}" Command="{Binding RegisterUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+            <Button Height="20" Content="{DynamicResource EnterAsGuest}" Command="{Binding LoginGuest}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
         </StackPanel>
-        <Button Height="20" Margin="3" Content="{DynamicResource EnterAsGuest}" Command="{Binding LogInGuest}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

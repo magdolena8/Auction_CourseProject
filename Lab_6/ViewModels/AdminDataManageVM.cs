@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Lab_6.Model;
+using System.Windows.Controls;
 
 namespace Lab_6.ViewModels
 {
@@ -75,6 +76,19 @@ namespace Lab_6.ViewModels
                 );
             }
         }
+        private RelayCommand _openUserInfoWnd;
+        public RelayCommand OpenUserInfoWnd
+        {
+            get
+            {
+                return _openUserInfoWnd ?? new RelayCommand(obj =>
+                {
+                    //obj = obj as PRODUCTS;
+                    OpenAdminUserInfoWNDMethod((USERS)obj);
+                }
+                );
+            }
+        }
         #endregion
 
 
@@ -84,6 +98,12 @@ namespace Lab_6.ViewModels
             AdminProductInfo newMoreInfoWindow = new AdminProductInfo();
             SetCentrePositionAndOpenWnd(newMoreInfoWindow);
             newMoreInfoWindow.DataContext = new ProductVM(product);
+        }
+        private void OpenAdminUserInfoWNDMethod(USERS user)
+        {
+            AdminUserInfo newMoreInfoWindow = new AdminUserInfo();
+            SetCentrePositionAndOpenWnd(newMoreInfoWindow);
+            newMoreInfoWindow.DataContext = new UserVM(user);
         }
         private void SetCentrePositionAndOpenWnd(Window wnd)
         {
@@ -103,8 +123,38 @@ namespace Lab_6.ViewModels
             {
                 return _updateData ?? new RelayCommand(obj =>
                 {
+                    //obj = obj as PRODUCTS;
                     AllProducts = DataWorker.GetAllProducts();
-                    AllUsers = DataWorker.GetAllUsers();
+
+                }
+                );
+            }
+        }
+
+
+        private RelayCommand _searchProducts;
+        public RelayCommand SearchProducts
+        {
+            get
+            {
+                return _searchProducts ?? new RelayCommand(obj =>
+                {
+                    //obj = obj as string;
+                    AllProducts = DataWorker.FindProducts((string)obj);
+                    //AllProducts.
+                });
+            }
+        }
+        private RelayCommand _changeLanguage;
+        public RelayCommand ChangeLanguage
+        {
+            get
+            {
+                return _changeLanguage ?? new RelayCommand(obj =>
+                {
+                    ComboBoxItem langComboBox = obj as ComboBoxItem;
+                    string lang = langComboBox.Content.ToString();
+                    WNDManager.ChangeLanguage(lang);
                 }
                 );
             }

@@ -47,3 +47,5 @@ D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\BasketList.g.cs
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\BasketList.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Resources\Dictionary3.baml
 D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\Resources\Themes\Light.baml
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\AdminUserInfo.g.cs
+D:\Stud\OOP\4_sem\Lab_6\Lab_6\obj\Debug\View\AdminUserInfo.baml

@@ -11,7 +11,8 @@ namespace Lab_6.Model
 {
     using System;
     using System.Collections.ObjectModel;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class USERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

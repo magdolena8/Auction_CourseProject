@@ -69,9 +69,17 @@ namespace Lab_6.Model
 
             }
         }
-        
-        
 
+        public static int GetUserGoodsCount(USERS user)
+        {
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                int count = (from p in db.PRODUCTS
+                             where p.OWNER_ID == user.ID_USER
+                             select p).Count();
+                return count;
+            }
 
+        }
     }
 }

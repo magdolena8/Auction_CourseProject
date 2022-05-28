@@ -25,6 +25,5 @@ namespace Lab_6
             InitializeComponent();
             DataContext = new UserVM();
         }
-
     }
 }
