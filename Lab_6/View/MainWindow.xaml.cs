@@ -30,5 +30,11 @@ namespace Lab_6
 
             InitializeComponent();
         }
+
+        private void EditUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            UserName.IsReadOnly = false;
+            DoneEditBtn.Visibility = Visibility.Visible;
+        }
     }
 }

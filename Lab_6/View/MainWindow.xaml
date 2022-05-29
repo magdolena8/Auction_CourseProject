@@ -160,7 +160,8 @@
                     <Label Width="200" Content="{DynamicResource Profile}"/>
                 </TabItem.Header>
                 <DockPanel Background="{DynamicResource MainBackgroundColor}">
-                    <Button Content="{DynamicResource EditInformation}" Height="40" FontSize="25" DockPanel.Dock="Top"/>
+                    <Button x:Name="DoneEditBtn" Content="{DynamicResource DoneEdit}" Height="40" DockPanel.Dock="Bottom" Visibility="Collapsed"/>
+                    <Button Content="{DynamicResource EditInformation}" Height="40" FontSize="25" DockPanel.Dock="Top" Click="EditUserBtn_Click"/>
                     <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
@@ -169,11 +170,11 @@
                         <TextBlock FontSize="16" Text="{DynamicResource UserRights}"/>
                         <TextBlock FontSize="16" Text="{DynamicResource ProductsCount}"/>
                     </StackPanel>
-                    <StackPanel VerticalAlignment="Center" Margin="40">
-                        <TextBlock FontSize="16" Text="{Binding Path=User.ID_USER}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=User.PASSWORD_USER}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=User.USER_TYPE}" HorizontalAlignment="Center" />
+                    <StackPanel VerticalAlignment="Center" Margin="10" Width="400">
+                        <TextBox FontSize="16" Text="{Binding Path=User.ID_USER}"/>
+                        <TextBox x:Name="UserName" FontSize="16" Text="{Binding Path=User.LOGIN_USER, Mode=TwoWay}"  />
+                        <TextBox FontSize="16" x:Name="UserPassword" Text="{Binding Path=User.PASSWORD_USER, Mode=TwoWay}"  />
+                        <TextBox FontSize="16" Text="{Binding Path=User.USER_TYPE}"  />
                         <!--<TextBlock FontSize="16" Text="{Binding Path=User.LOGIN_USER}" HorizontalAlignment="Center" />-->
                     </StackPanel>
                 </DockPanel>

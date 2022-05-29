@@ -79,7 +79,25 @@ namespace Lab_6.Model
                              select p).Count();
                 return count;
             }
-
         }
+        public static USERS EditUser(int userID, USERS user) 
+        {
+            using(AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                try
+                {
+                    USERS dbUser = (from u in db.USERS
+                                    where u.ID_USER == userID
+                                    select u).Single();
+                    dbUser = user;
+                    return dbUser;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
     }
 }

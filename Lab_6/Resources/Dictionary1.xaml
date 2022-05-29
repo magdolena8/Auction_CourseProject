@@ -19,6 +19,7 @@
     <v:String x:Key="UploadPhoto">Загрузить фото</v:String>
     <v:String x:Key="EditPhoto">Изменить фото</v:String>
     <v:String x:Key="DoneAddingProduct">Готово</v:String>
+    <v:String x:Key="DoneEdit">Готово</v:String>
     <v:String x:Key="PlaceBid">Сделать ставку</v:String>
     <v:String x:Key="Bid">Cтавка:</v:String>
     <v:String x:Key="UserName">Логин</v:String>

@@ -207,12 +207,25 @@ namespace Lab_6.ViewModels
                     ComboBoxItem langComboBox = obj as ComboBoxItem;
                     string lang = langComboBox.Content.ToString();
                     WNDManager.ChangeLanguage(lang);
-                }
-                );
+                });
             }
         }
 
-    }
+        private RelayCommand _editUserInfo;
+        public RelayCommand EditUserInfo
+        {
+            get
+            {
+                return _editUserInfo ?? new RelayCommand(obj =>
+                {
+                    UserVM userVM = obj as UserVM;
+                    USERS user = userVM.User;
+                    USERS updatedUser = UserDataWorker.EditUser(user.ID_USER, user);
+                });
+            }
+        }
 
+
+    }
 }
 
