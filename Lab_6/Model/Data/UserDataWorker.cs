@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Data;
-
+using System.Data.Entity;
 
 namespace Lab_6.Model
 {
@@ -80,9 +80,56 @@ namespace Lab_6.Model
                 return count;
             }
         }
-        public static USERS EditUser(int userID, USERS user) 
+        public static string GetUserAvatarLink(USERS user)
         {
-            using(AUCTION_DBEntities db = new AUCTION_DBEntities())
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                try
+                {
+                    IMAGES img = db.IMAGES.Where(i => i.ID_IMAGE == user.AVATAR_USER).Single();
+                    return img.LINK ?? null;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+        public static string SetUserAvatarLink(USERS user, string newLink)
+        {
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
+            {
+                try
+                {
+                    if (user.AVATAR_USER == null)
+                    {
+                        IMAGES newImg = new IMAGES();
+                        newImg.LINK = newLink;
+                        IMAGES dbImg = db.IMAGES.Add(newImg);
+                        USERS dbUser = db.USERS.Where(u => u.ID_USER == user.ID_USER).Single();
+                        dbUser.AVATAR_USER = dbImg.ID_IMAGE;
+                        db.SaveChanges();
+                        return dbImg.LINK;
+
+                    }
+                    else
+                    {
+                        IMAGES img = db.IMAGES.Where(i => i.ID_IMAGE == user.AVATAR_USER).Single();
+                        img.LINK = newLink;
+                        db.SaveChanges();
+                        return img.LINK ?? null;
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static USERS EditUser(int userID, USERS user)
+        {
+            using (AUCTION_DBEntities db = new AUCTION_DBEntities())
             {
                 try
                 {

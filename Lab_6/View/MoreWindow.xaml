@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_6"
         mc:Ignorable="d"
-        Title="MoreWindow"
+        Title="{Binding Product.TITLE}"
         Height="450" Width="800"
         MinHeight="450" MinWidth="700">
 

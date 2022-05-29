@@ -157,7 +157,7 @@
                 </TabItem.Header>
                 <DockPanel Background="{DynamicResource MainBackgroundColor}">
                     <Button Content="{DynamicResource EditInformation}" DockPanel.Dock="Top"/>
-                    <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
+                    <Image Width="150" Margin="20" VerticalAlignment="Center" Source="{Binding Path = User.USER_AVATAR_LINK, FallbackValue={StaticResource StandartAvatar}}" />
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock FontSize="16" Text="{DynamicResource ID}"/>
                         <TextBlock FontSize="16" Text="{DynamicResource Login}"/>

@@ -31,7 +31,7 @@
                             </Style>
                         </Border.Style>-->
                         <StackPanel Margin="5" Orientation="Horizontal" Width="304" Height="70" Background="#238C47" >
-                            <Image Width="50" Margin="7" VerticalAlignment="Center" Source="{Binding Path = USER_IMAGE_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
+                            <Image Width="50" Margin="7" VerticalAlignment="Center" Source="{Binding Path = USER_AVATAR_LINK, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource StandartAvatar}}" />
 
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                 <TextBlock FontSize="16" Text="{DynamicResource ID}"/>

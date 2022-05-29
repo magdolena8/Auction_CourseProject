@@ -36,7 +36,7 @@
             <ColumnDefinition Width="177*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="Image" Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = User.USER_IMAGE_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
+        <Image x:Name="Image" Grid.Row="1" Grid.Column="0" Height="Auto" Width="Auto" Margin="10,10,10,10" Source="{Binding Path = User.USER_AVATAR_LINK, Mode=TwoWay, TargetNullValue={StaticResource MyImageSource}, FallbackValue={StaticResource MyImageSource}}"/>
         <Button x:Name="editImageBtn" Content="{DynamicResource EditPhoto}" Command="{Binding EditImage}" Visibility="Collapsed" Grid.Row="2" Width="Auto" HorizontalAlignment="Center" />
 
         
@@ -54,7 +54,7 @@
             <TextBox x:Name="IDUser" FontSize="16" IsReadOnly="True" Text="{Binding Path = GOODS_COUNT, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="0,35,0,0" Grid.RowSpan="2" Width="175">
-            <Button x:Name="doneEditBtn" Command="{Binding EditProduct}" CommandParameter="{Binding}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75">
+            <Button x:Name="doneEditBtn" Command="{Binding EditUser}" CommandParameter="{Binding}"  Background="AliceBlue"  Visibility="Collapsed" Height="17" Width="75">
                 Готово
             </Button>
 

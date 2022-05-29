@@ -28,7 +28,18 @@ namespace Lab_6.Model
         public string USER_TYPE { get; set; }
         public string PASSWORD_USER { get; set; }
         public Nullable<int> AVATAR_USER { get; set; }
-    
+        private string userAvatarLink;
+        public string USER_AVATAR_LINK
+        {
+            get
+            {
+                return userAvatarLink ?? UserDataWorker.GetUserAvatarLink(this);
+            }
+            set
+            {
+                userAvatarLink = UserDataWorker.SetUserAvatarLink(this, value);
+            }
+        }
         public virtual IMAGES IMAGES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<PRODUCTS> PRODUCTS { get; set; }

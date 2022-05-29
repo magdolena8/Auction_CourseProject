@@ -6,9 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9536bfaff754402c8f1393fa4a44116b" Name="Diagram1">
         <EntityTypeShape EntityType="AUCTION_DBModel.IMAGES" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="AUCTION_DBModel.PRODUCTS" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AUCTION_DBModel.USER_TYPE" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AUCTION_DBModel.USERS" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AUCTION_DBModel.PRODUCTS" Width="1.5" PointX="7.875" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="AUCTION_DBModel.USER_TYPE" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AUCTION_DBModel.USERS" Width="1.5" PointX="10.125" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="AUCTION_DBModel.PRODUCT_IMAGE_FK" ManuallyRouted="false" />
         <AssociationConnector Association="AUCTION_DBModel.USER_IMAGE_FK" ManuallyRouted="false" />
         <AssociationConnector Association="AUCTION_DBModel.FK__PRODUCT__OWNER_I__693CA210" ManuallyRouted="false" />

@@ -20,26 +20,11 @@ namespace Lab_6.Model
         {
             this.USERS2 = new ObservableCollection<USERS>();
         }
-
+    
         public int ID_PRODUCT { get; set; }
         public string TITLE { get; set; }
         public decimal PRICE { get; set; }
         public System.DateTime ENDTIME { get; set; }
-        //{
-        //    get
-        //    {
-
-        //        //System.DateTime date1 = ENDTIME.Subtract(TimeSpan.Now);
-        //        //    dt = ENDTIME.Subtract(DateTime.Now).TotalHours;
-        //        //return dt;
-        //        return ENDTIME;
-
-        //    }
-        //    set
-        //    { 
-        //        ENDTIME = value;
-        //    }
-        //}
         public Nullable<int> BIDS { get; set; }
         public string PROD_DESCRIPTION { get; set; }
         public string TYPE_PROD { get; set; }

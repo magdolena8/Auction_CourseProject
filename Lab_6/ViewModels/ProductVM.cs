@@ -85,7 +85,7 @@ namespace Lab_6.ViewModels
                             }
                             else
                             {
-                                MessageBox.Show("Возникла ошибка");
+                                MessageBox.Show("Ошибочная ставка");
                             }
 
                         }
@@ -126,12 +126,10 @@ namespace Lab_6.ViewModels
                         imagePath = editImageFileDialog.FileName;
                         try
                         {
-
                             this.Product.PRODUCT_IMAGE_LINK = imagePath;
                             //this.Product.PRODUCT_IMAGE_LINK = DataWorker.SetImageLinkToProduct(this.Product, imagePath);
                             NotifyPropertyChanged("Product");
                             MessageBox.Show("ImageEdited");
-
                         }
                         catch (NotSupportedException ex)
                         {

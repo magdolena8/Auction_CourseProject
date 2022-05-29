@@ -22,6 +22,13 @@ namespace Lab_6.ViewModels
                 return UserDataWorker.GetUserGoodsCount(this.User);
             }
         }
+        //public string USER_AVATAR_LINK
+        //{
+        //    get
+        //    {
+        //        return UserDataWorker.GetUserAvatarLink(this.User);
+        //    }
+        //}
         public USERS User
         {
             get
@@ -83,8 +90,7 @@ namespace Lab_6.ViewModels
                 {
                     AutentificationWindow autWnd = obj as AutentificationWindow;
                     TextBox passBox1 = (TextBox)autWnd.FindName("PasswordTextBox");
-                    TextBox passBox2 = (TextBox)autWnd.FindName("PasswordAgainTextBox");
-                    if ((passBox1.Text == passBox2.Text) && passBox1.Text != "")
+                    if (passBox1.Text != "")
                     {
 
                         USERS registrationResult = UserDataWorker.RegisterUser(this.User);
@@ -92,9 +98,12 @@ namespace Lab_6.ViewModels
                         {
                             WNDManager.openUserMainWindow(autWnd, registrationResult);
                         }
+                        else
+                        {
+                            passBox1.Background = Brushes.Red;
+                            MessageBox.Show("Неверный Логин или Пароль");
+                        }
                     }
-                    else MessageBox.Show("Неверный Логин или Пароль");
-                    passBox2.Background = Brushes.DarkCyan;
                 });
             }
         }
@@ -114,7 +123,68 @@ namespace Lab_6.ViewModels
 
         }
 
+        private RelayCommand _editImage;
+        public RelayCommand EditImage
+        {
+            get
+            {
+                return _editImage ?? new RelayCommand(obj =>
+                {
+                    string imagePath;
+                    OpenFileDialog editImageFileDialog = new OpenFileDialog();
+                    if (editImageFileDialog.ShowDialog() == true)
+                    {
+                        imagePath = editImageFileDialog.FileName;
+                        try
+                        {
 
+                            this.User.USER_AVATAR_LINK = imagePath;
+                            //this.Product.PRODUCT_IMAGE_LINK = DataWorker.SetImageLinkToProduct(this.Product, imagePath);
+                            NotifyPropertyChanged("User");
+                            MessageBox.Show("ImageEdited");
+
+                        }
+                        catch (NotSupportedException ex)
+                        {
+                            MessageBox.Show("Неверный формат");
+                        }
+                    }
+                });
+            }
+        }
+
+        private RelayCommand _editUser;
+        public RelayCommand EditUser
+        {
+            get
+            {
+                return _editUser ?? new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        UserVM userVM = obj as UserVM;
+                        USERS user = userVM.User;
+                        USERS updatedUser = UserDataWorker.EditUser(user.ID_USER, user);
+                        if (updatedUser != null)
+                        {
+                            user = updatedUser;
+                            //wnd.BeginInit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Возникла ошибка");
+                        }
+                    }
+                    catch
+                    {
+                        //SetRedBlockControll(wnd, bidTextBox);
+                        MessageBox.Show("Ошибка");
+                        return;
+                    }
+
+                });
+            }
+        }
 
 
 

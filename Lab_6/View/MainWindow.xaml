@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:local="clr-namespace:Lab_6.View.Converters"        
         xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
-        Title="MainWindow" Width="860"  Height="580" 
+        Title="{DynamicResource MainWindowTitle}" Width="860"  Height="580" 
         WindowState="Maximized" MinWidth="880" MinHeight ="580"
         >
     <i:Interaction.Triggers>

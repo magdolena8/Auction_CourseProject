@@ -106,7 +106,18 @@
         </Setter>
     </Style>
 
+    <!--<BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />-->
+    <Style TargetType="Window">
+        <Setter Property="Icon">
+            <Setter.Value>
+                <Image ="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/icons8-строитель-96.png"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+
+    
+    
     <Style TargetType="Button" >
         <Setter Property="Background" Value="White" />
         <Setter Property="TextBlock.TextAlignment" Value="Center" />
