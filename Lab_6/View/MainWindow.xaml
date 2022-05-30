@@ -36,7 +36,7 @@
                 <Label Content="{DynamicResource Search}"/>
                 <TextBox x:Name="SerchText" Text="" MinWidth = "200" Width="184"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <!--<StackPanel Orientation="Horizontal">
                 <Label Content="{DynamicResource SortBy}"/>
                 <ComboBox Width="143">
                     <TextBlock Text="{DynamicResource BestMatch}"/>
@@ -44,7 +44,7 @@
                     <TextBlock Text="{DynamicResource PriceLowestFirst}"/>
                     <TextBlock Text="{DynamicResource PriceHighestFirst}"/>
                 </ComboBox>
-            </StackPanel>
+            </StackPanel>-->
         </WrapPanel>
         <TabControl TabStripPlacement="Left" Grid.Column="0" Height="Auto" Grid.ColumnSpan="2" Grid.Row="1" Padding="0" Margin="0" BorderThickness="0">
             <!--<TabControl.Resources>
@@ -184,19 +184,34 @@
                     <Label Width="200" Content="{DynamicResource Settings}" HorizontalAlignment="Center"/>
                 </TabItem.Header>
                 <StackPanel Background="{DynamicResource MainBackgroundColor}">
-                    <ComboBox x:Name="langComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
-                        <ComboBoxItem>
-                            English
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Русский
-                        </ComboBoxItem>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ChangeLanguage}" CommandParameter="{Binding ElementName=langComboBox, Path=SelectedValue}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
+                    <StackPanel HorizontalAlignment="Center">
+                        <ComboBox x:Name="langComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
+                            <ComboBoxItem>
+                                English
+                            </ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">
+                                Русский
+                            </ComboBoxItem>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChangeLanguage}" CommandParameter="{Binding ElementName=langComboBox, Path=SelectedValue}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                        <ComboBox x:Name="themeComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
+                            <ComboBoxItem IsSelected="True">
+                                Light
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Dark
+                            </ComboBoxItem>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChangeTheme}" CommandParameter="{Binding ElementName=themeComboBox, Path=SelectedValue}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
         </TabControl>

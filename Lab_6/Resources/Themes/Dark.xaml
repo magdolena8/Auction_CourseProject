@@ -6,10 +6,10 @@
     </Style>
 
     <Style TargetType="Grid">
-        <Setter Property="Background" Value="#4f7a6a"/>
+        <Setter Property="Background" Value="#00080F"/>
     </Style>
     <Style x:Key="ProductItem" TargetType="Border">
-        <Setter Property="Background" Value="#A4D2DA"/>
+        <Setter Property="Background" Value="#1D1B1B"/>
         <Setter Property="BorderBrush" Value="#A4D2C2"/>
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="CornerRadius" Value="2"/>
@@ -87,8 +87,8 @@
     </Style>-->
 
 
-    
-    
+
+
     <Style TargetType="Button" >
         <Setter Property="Background" Value="White" />
         <Setter Property="TextBlock.TextAlignment" Value="Center" />

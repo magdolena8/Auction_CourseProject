@@ -68,5 +68,27 @@ namespace Lab_6
                     }
             }
         }
+        public static void ChangeTheme(string theme = "Light")
+        {
+            //Application.ResourceAssembly
+            //Application.Current.Resources.MergedDictionaries.Clear();
+            ResourceDictionary lightTheme = Application.LoadComponent(new Uri(@"Resources/Themes/light.xaml", UriKind.Relative)) as ResourceDictionary;
+            ResourceDictionary darkTheme = Application.LoadComponent(new Uri(@"Resources/Themes/dark.xaml", UriKind.Relative)) as ResourceDictionary;
+            switch (theme)
+            {
+                case "Light":
+                    {
+                        Application.Current.Resources.MergedDictionaries.Remove(darkTheme);
+                        Application.Current.Resources.MergedDictionaries.Add(lightTheme);
+                        break;
+                    }
+                case "Dark":
+                    {
+                        Application.Current.Resources.MergedDictionaries.Remove(lightTheme);
+                        Application.Current.Resources.MergedDictionaries.Add(darkTheme);
+                        break;
+                    }
+            }
+        }
     }
 }

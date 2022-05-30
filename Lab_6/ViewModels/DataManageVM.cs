@@ -210,6 +210,19 @@ namespace Lab_6.ViewModels
                 });
             }
         }
+        private RelayCommand _changeTheme;
+        public RelayCommand ChangeTheme
+        {
+            get
+            {
+                return _changeTheme ?? new RelayCommand(obj =>
+                {
+                    ComboBoxItem themeComboBox = obj as ComboBoxItem;
+                    string theme = themeComboBox.Content.ToString();
+                    WNDManager.ChangeTheme(theme);
+                });
+            }
+        }
 
         private RelayCommand _editUserInfo;
         public RelayCommand EditUserInfo
