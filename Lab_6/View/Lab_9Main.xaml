@@ -1,0 +1,29 @@
+﻿<Window x:Class="Lab_6.View.Lab_9Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_6.View"
+        mc:Ignorable="d"
+        Title="Lab_9Main" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <!--<Button Width="100" Content="События" Click="Button_Click"></Button>-->
+            <!--<Button Width="100" Content="Выход" Command="local:WindowCommands.Exit"></Button>-->
+        </StackPanel>
+        <Label Content="Сгенерировать случайное число " HorizontalAlignment="Left" Margin="101,79,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="194" Background="White"/>
+        <TextBox HorizontalAlignment="Left" Margin="82,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="235,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+        <!--<local:RandomUserControl Grid.Row="1" From="0" To="12000"></local:RandomUserControl>-->
+        <!--<local:LimitedInputUserControl Grid.Row="1" Margin="64,0,64,0" Grid.Column="1" Title="Enter title:" MaxLength="30" Height="50" />-->
+    </Grid>
+</Window>

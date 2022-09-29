@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using Lab_6.Model;
+using Lab_6.View;
 using Lab_6.ViewModels;
 using System.Globalization;
 
@@ -35,6 +36,12 @@ namespace Lab_6
         {
             UserName.IsReadOnly = false;
             DoneEditBtn.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Lab_9Main();
+            window.Show();
         }
     }
 }

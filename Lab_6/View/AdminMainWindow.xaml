@@ -8,18 +8,11 @@
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
         Title="AdminMainWindow" Width="860"  Height="580" 
-        WindowState="Maximized" MinWidth="880" MinHeight ="580"
+        WindowState="Maximized" MinWidth="880" MinHeight ="580" Icon="/View/icons8-строитель-96.png"
         >
-    <!--<i:Interaction.Triggers>
-        -->
-    <!--Microsoft Interacticity-->
-    <!--
-        <i:EventTrigger EventName="Activated">
-            <i:InvokeCommandAction Command="{Binding UpdateData}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>-->
+
     <Window.Resources>
-        <!--<ResourceDictionary Source="Dictionary2.xaml" />-->
+
 
         <local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
     </Window.Resources>

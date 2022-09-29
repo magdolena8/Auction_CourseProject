@@ -44,6 +44,10 @@
     <v:String x:Key="TimeEendingSoonest">Time ending first</v:String>
     <v:String x:Key="PriceLowestFirst">Price lowest</v:String>
     <v:String x:Key="PriceHighestFirst">Price highest</v:String>
+    <v:String x:Key="MainWindowTitle">GRANT ROAD AUCTION</v:String>
+    <v:String x:Key="ChangeLanguage">Change Language</v:String>
+    <v:String x:Key="ChangeTheme">Change theme</v:String>
+
 
 
 

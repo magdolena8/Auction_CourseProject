@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Lab_6.View.Converters"        
         xmlns:uc="clr-namespace:Lab_6.Resources.CustomControls"
         Title="{DynamicResource MainWindowTitle}" Width="860"  Height="580" 
-        WindowState="Maximized" MinWidth="880" MinHeight ="580"
+        WindowState="Maximized" MinWidth="880" MinHeight ="580" Icon="/View/icons8-строитель-96.png"
         >
     <i:Interaction.Triggers>
         <!--Microsoft Interacticity-->
@@ -19,6 +19,19 @@
     <Window.Resources>
         <local:DateTimeToTimespanConverter x:Key="DateTimeToTimespanConverter" />
     </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard Timeline.DesiredFrameRate="60">
+                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Bottom)"
+                                 From="0" To="160" AutoReverse="True" Duration="0:0:2.5" RepeatBehavior="Forever"
+                                 DecelerationRatio="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
 
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
@@ -185,7 +198,8 @@
                 </TabItem.Header>
                 <StackPanel Background="{DynamicResource MainBackgroundColor}">
                     <StackPanel HorizontalAlignment="Center">
-                        <ComboBox x:Name="langComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
+                        <Label Content="{DynamicResource ChangeLanguage}"/>
+                        <ComboBox x:Name="langComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10" Background="black">
                             <ComboBoxItem>
                                 English
                             </ComboBoxItem>
@@ -198,6 +212,7 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ComboBox>
+                        <Label Content="{DynamicResource ChangeTheme}"/>
                         <ComboBox x:Name="themeComboBox" Width="200" FontSize="18" HorizontalAlignment="Right" Margin="10">
                             <ComboBoxItem IsSelected="True">
                                 Light
@@ -215,5 +230,6 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
+        <Button Content="Lab 9" HorizontalAlignment="Left" Margin="103,0,0,0" VerticalAlignment="Center" Width="227" Height="39" Click="Button_Click"/>
     </Grid>
 </Window>

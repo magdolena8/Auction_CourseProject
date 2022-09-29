@@ -150,6 +150,9 @@
       <DependentUpon>BasketList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Converters.cs" />
+    <Compile Include="View\Lab_9Main.xaml.cs">
+      <DependentUpon>Lab_9Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MoreWindow.xaml.cs">
       <DependentUpon>MoreWindow.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BasketList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Lab_9Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,6 +288,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\icons8-строитель-96.png" />
     <Resource Include="Media\56c49e7efe7ffb5a9411b6b06092efa8.png" />
     <Resource Include="Media\asscreed.jpg" />
     <Resource Include="Media\car.jpg" />

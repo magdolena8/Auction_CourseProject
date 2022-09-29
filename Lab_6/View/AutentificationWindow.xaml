@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:Lab_6"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="{DynamicResource AutentificationTitle}" Height="326" Width="367">
+        Title="{DynamicResource AutentificationTitle}" Height="326" Width="367" Icon="/View/icons8-строитель-96.png">
     <Window.InputBindings>
-        <KeyBinding Key="Enter"
+        <KeyBinding Key="Return"
                Command="{Binding LogInUser}"
                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
     </Window.InputBindings>
@@ -37,7 +37,7 @@
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Height="Auto">
             <Button  Height="30" Width="130" Margin="3" Content="{DynamicResource LogIn}" Command="{Binding LogInUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
             <Button Height="30" Width="130" Margin="3" Content="{DynamicResource Register}" Command="{Binding RegisterUser}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
-            <Button Height="20" Content="{DynamicResource EnterAsGuest}" Command="{Binding LoginGuest}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+            <Button x:Name="LoginGuestBtn" Height="20" Content="{DynamicResource EnterAsGuest}" Command="{Binding LoginGuest}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -14,7 +14,19 @@
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="CornerRadius" Value="2"/>
     </Style>
-
+    <Style TargetType="TextBox">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="LightGreen" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="BidIndicator" TargetType="StackPanel">
         <Setter Property="Background" Value="Yellow"/>
         <Style.Triggers>
@@ -43,17 +55,6 @@
 
     <SolidColorBrush x:Key="MainBackgroundColor">#BEEADA</SolidColorBrush>
 
-    <!--<Style x:Key="TabsStyle" TargetType="{x:Type TabItem}">
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="False">
-                <Setter Property="Background" Value="{DynamicResource LightTabOn}"></Setter>
-            </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource LightTabOff}"></Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>-->
-
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -77,25 +78,16 @@
         </Setter>
     </Style>
 
-    <!--<BitmapImage x:Key="MyImageSource" UriSource="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/no_image.png" />-->
-    <!--<Style TargetType="Window">
-        <Setter Property="Icon">
-            <Setter.Value>
-                <Image ="D:/Stud/OOP/4_sem/Lab_6/Lab_6/Media/icons8-строитель-96.png"/>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
-
-
-    
-    
-    <Style TargetType="Button" >
+    <Style TargetType="Button">
         <Setter Property="Background" Value="White" />
         <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
 
-
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
 
 
 

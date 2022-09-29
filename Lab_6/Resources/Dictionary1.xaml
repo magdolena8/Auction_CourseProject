@@ -31,6 +31,8 @@
     <v:String x:Key="EnterAsGuest">Войти как гость</v:String>
     <v:String x:Key="AutentificationTitle">Авторизация</v:String>
     <v:String x:Key="MainWindowTitle">GRANT ROAD AUCTION</v:String>
+    <v:String x:Key="ChangeLanguage">Сменить язык</v:String>
+    <v:String x:Key="ChangeTheme">Сменить тему</v:String>
     
     
     <v:String x:Key="Update">Обновить</v:String>

@@ -190,6 +190,7 @@ namespace Lab_6.Model
 
                         ObservableCollection<PRODUCTS> x = new ObservableCollection<PRODUCTS>(userResult);
                         return x;
+
                     }
                     catch (Exception ex)
                     {
